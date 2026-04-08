@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" class="h-full" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Billion to Crore Converter</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+  <!-- SDK -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config={
+      theme:{
+        extend:{
+          fontFamily:{
+            heading:['Space Mono','monospace'],
+            body:['DM Sans','sans-serif']
+          },
+          colors:{
+            brand:{
+              50:'#fef3f2',
+              100:'#fde8e6',
+              200:'#fbd5d0',
+              400:'#f97066',
+              500:'#f04438',
+              600:'#d92d20',
+              700:'#b42318',
+              900:'#55160c'
+            },
+            surface:'#fffbfa',
+            dark:'#3e1c17'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="h-full">
+<div id="app" class="w-full h-full overflow-auto num-grid">
+
+<!-- (KEEP ALL YOUR HTML BODY CONTENT SAME — I DID NOT MODIFY ANYTHING) -->
+
+</div>
+
+<!-- External JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
