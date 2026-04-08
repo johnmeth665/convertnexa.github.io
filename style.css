@@ -1,0 +1,65 @@
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:#fffbfa;color:#3e1c17}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse-ring{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.4);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gridFlow{0%{background-position:0 0}100%{background-position:40px 40px}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes flowShift{0%{transform:translateX(-100%)}50%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+@keyframes numberFloat{0%{opacity:.3;transform:translateY(0) translateX(-20px)}25%{opacity:.6}50%{opacity:.4;transform:translateY(-30px) translateX(20px)}75%{opacity:.5}100%{opacity:.2;transform:translateY(-60px) translateX(-40px)}}
+
+/* Classes */
+.fade-up{animation:fadeUp .6s ease both}
+.slide-in{animation:slideIn .5s ease both}
+.float-anim{animation:float 3s ease-in-out infinite}
+.count-anim{animation:countUp .3s ease both}
+
+/* Floating Numbers */
+.floating-number{
+  position:absolute;
+  font-size:48px;
+  font-weight:bold;
+  opacity:.15;
+  pointer-events:none;
+  font-family:'Space Mono',monospace;
+  color:#f04438;
+  animation:numberFloat 6s linear infinite;
+}
+
+/* Glass */
+.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.3)}
+.glass-dark{background:rgba(15,23,42,.8);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+
+/* Background Grid */
+.num-grid{
+  background-image:linear-gradient(rgba(240,68,56,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(240,68,56,.05) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridFlow 4s linear infinite;
+  position:relative;
+  overflow:hidden
+}
+.num-grid::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(240,68,56,.02),transparent);
+  animation:flowShift 8s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+
+/* Dark Mode */
+.dark-mode{background:#3e1c17!important;color:#fef3f2}
+
+/* UI Effects */
+.section-card{background:white;border:1px solid rgba(0,0,0,.06);border-radius:16px}
+.result-flash{animation:shimmer 1s ease}
