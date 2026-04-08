@@ -1,1733 +1,850 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Billion to Crore Converter | Smart Financial Number Converter</title>
-<meta name="description" content="Convert billion to crore, million to lakh, and more with our smart financial number converter. Real-time conversion with calculation history, voice input, and detailed guides.">
-<meta name="keywords" content="billion to crore, crore to billion, million to lakh, number converter, financial converter, Indian numbering system">
-
-<!-- Schema Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Billion to Crore Converter",
-  "applicationCategory": "FinanceApplication",
-  "description": "Convert between billion, crore, million, and lakh with real-time calculations",
-  "offers": { "@type": "Offer", "price": "0" }
-}
+<!doctype html>
+<html lang="en" class="h-full" style="scroll-behavior:smooth">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Billion to Crore Converter</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config={theme:{extend:{fontFamily:{heading:['Space Mono','monospace'],body:['DM Sans','sans-serif']},colors:{brand:{50:'#fef3f2',100:'#fde8e6',200:'#fbd5d0',400:'#f97066',500:'#f04438',600:'#d92d20',700:'#b42318',900:'#55160c'},surface:'#fffbfa',dark:'#3e1c17'}}}}
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How many crores is 1 billion?",
-      "acceptedAnswer": { "@type": "Answer", "text": "1 Billion equals 100 Crore (10,00,00,000)." }
-    },
-    {
-      "@type": "Question",
-      "name": "How many millions is 1 crore?",
-      "acceptedAnswer": { "@type": "Answer", "text": "1 Crore equals 10 Million." }
-    }
-  ]
-}
-</script>
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:#fffbfa;color:#3e1c17}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse-ring{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.4);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gridFlow{0%{background-position:0 0}100%{background-position:40px 40px}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes flowShift{0%{transform:translateX(-100%)}50%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+@keyframes numberFloat{0%{opacity:.3;transform:translateY(0) translateX(-20px)}25%{opacity:.6}50%{opacity:.4;transform:translateY(-30px) translateX(20px)}75%{opacity:.5}100%{opacity:.2;transform:translateY(-60px) translateX(-40px)}}
 
-<style>
-/* ===== CSS VARIABLES ===== */
-:root {
-  --bg: #f0f4ff;
-  --bg2: #e8eeff;
-  --surface: #ffffff;
-  --surface2: rgba(255,255,255,0.7);
-  --border: rgba(100,130,255,0.15);
-  --border2: rgba(100,130,255,0.3);
-  --text: #0a0e1a;
-  --text2: #3a4060;
-  --text3: #6b7280;
-  --accent: #2563eb;
-  --accent2: #1d4ed8;
-  --accent3: #60a5fa;
-  --accent-light: rgba(37,99,235,0.08);
-  --accent-mid: rgba(37,99,235,0.15);
-  --grad1: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  --grad2: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-  --grad3: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-  --shadow: 0 4px 24px rgba(37,99,235,0.12);
-  --shadow2: 0 16px 48px rgba(37,99,235,0.18);
-  --shadow3: 0 2px 8px rgba(0,0,0,0.08);
-  --radius: 16px;
-  --radius2: 24px;
-  --radius3: 32px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-[data-theme="dark"] {
-  --bg: #060b1a;
-  --bg2: #0d1530;
-  --surface: #0f1a35;
-  --surface2: rgba(15,26,53,0.8);
-  --border: rgba(96,165,250,0.12);
-  --border2: rgba(96,165,250,0.25);
-  --text: #f0f6ff;
-  --text2: #a8b8d8;
-  --text3: #6b7da0;
-  --accent: #3b82f6;
-  --accent2: #60a5fa;
-  --accent3: #93c5fd;
-  --accent-light: rgba(59,130,246,0.1);
-  --accent-mid: rgba(59,130,246,0.2);
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
-  --shadow2: 0 16px 48px rgba(0,0,0,0.5);
-  --shadow3: 0 2px 8px rgba(0,0,0,0.3);
+.fade-up{animation:fadeUp .6s ease both}
+.slide-in{animation:slideIn .5s ease both}
+.float-anim{animation:float 3s ease-in-out infinite}
+.count-anim{animation:countUp .3s ease both}
+
+.floating-number{
+  position:absolute;
+  font-size:48px;
+  font-weight:bold;
+  opacity:.15;
+  pointer-events:none;
+  font-family:'Space Mono',monospace;
+  color:#f04438;
+  animation:numberFloat 6s linear infinite;
 }
 
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-  transition: background 0.4s, color 0.4s;
-}
-h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; line-height: 1.2; }
-a { color: var(--accent); text-decoration: none; }
-img { max-width: 100%; }
-::selection { background: var(--accent); color: #fff; }
+/* Glassmorphism */
+.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.3)}
+.glass-dark{background:rgba(15,23,42,.8);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+/* Number grid bg */
+.num-grid{
+  background-image:linear-gradient(rgba(240,68,56,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(240,68,56,.05) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridFlow 4s linear infinite;
+  position:relative;
+  overflow:hidden
+}
+.num-grid::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:linear-gradient(90deg,transparent,rgba(240,68,56,.02),transparent);
+  animation:flowShift 8s ease-in-out infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.num-grid > *{position:relative;z-index:1}
 
-/* ===== UTILITY ===== */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--accent-light); color: var(--accent);
-  border: 1px solid var(--border2);
-  padding: 5px 14px; border-radius: 50px;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-}
-.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+/* Custom scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
 
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em;
-  text-transform: uppercase; margin-bottom: 12px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-label::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--accent); }
+/* Dark mode */
+.dark-mode body,.dark-mode{background:#3e1c17!important;color:#fef3f2}
+.dark-mode .glass{background:rgba(62,28,23,.8);border-color:rgba(255,255,255,.08)}
+.dark-mode .section-card{background:rgba(62,28,23,.6)!important;border-color:rgba(255,255,255,.06)!important}
+.dark-mode .nav-bar{background:rgba(62,28,23,.9)!important;border-color:rgba(255,255,255,.06)!important}
+.dark-mode .text-brand-900{color:#fef3f2!important}
+.dark-mode .text-gray-600,.dark-mode .text-gray-500,.dark-mode .text-gray-700{color:#d4a5a0!important}
+.dark-mode .bg-white{background:rgba(62,28,23,.6)!important}
+.dark-mode .bg-surface,.dark-mode .bg-gray-50{background:#3e1c17!important}
+.dark-mode input,.dark-mode select,.dark-mode textarea{background:rgba(62,28,23,.8)!important;color:#fef3f2!important;border-color:rgba(255,255,255,.1)!important}
+.dark-mode .comparison-cell{background:rgba(62,28,23,.5)!important}
 
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800; color: var(--text);
-  margin-bottom: 16px;
-}
-.section-desc {
-  font-size: 1.05rem; color: var(--text2); max-width: 600px;
-  line-height: 1.75;
-}
+.result-flash{animation:shimmer 1s ease}
+.nav-bar{transition:all .3s ease}
+.nav-link{position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#f04438,#f97066);transition:width .3s ease}
+.nav-link.active::after,.nav-link:hover::after{width:100%}
 
-/* ===== GRID BACKGROUNDS ===== */
-.grid-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.6;
-}
-.noise-bg {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.section-card{background:white;border:1px solid rgba(0,0,0,.06);border-radius:16px;transition:transform .3s ease,box-shadow .3s ease}
+.section-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 14px 0;
-  background: var(--surface2);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  transition: var(--transition);
-}
-nav.scrolled { padding: 10px 0; box-shadow: var(--shadow); }
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
-}
-.nav-logo {
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem;
-  color: var(--text);
-  display: flex; align-items: center; gap: 10px;
-}
-.nav-logo-icon {
-  width: 34px; height: 34px; border-radius: 10px;
-  background: var(--grad1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; color: #fff;
-}
-.nav-links {
-  display: flex; align-items: center; gap: 6px;
-  list-style: none;
-}
-.nav-links a {
-  padding: 7px 14px; border-radius: 8px;
-  font-size: 0.88rem; font-weight: 500; color: var(--text2);
-  transition: var(--transition);
-}
-.nav-links a:hover, .nav-links a.active { background: var(--accent-light); color: var(--accent); }
-.nav-actions { display: flex; align-items: center; gap: 10px; }
-.theme-toggle {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: var(--accent-light); border: 1px solid var(--border2);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; transition: var(--transition); color: var(--text);
-}
-.theme-toggle:hover { background: var(--accent-mid); transform: scale(1.05); }
-.nav-cta {
-  padding: 8px 20px; border-radius: 10px;
-  background: var(--grad1); color: #fff;
-  font-size: 0.88rem; font-weight: 600;
-  transition: var(--transition); border: none; cursor: pointer;
-  box-shadow: 0 2px 12px rgba(37,99,235,0.3);
-}
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-.hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+.preset-btn{transition:all .2s ease}
+.preset-btn:hover{transform:scale(1.05)}
+.preset-btn:active{transform:scale(.95)}
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  position: relative; overflow: hidden;
-  padding: 100px 0 60px;
-}
-.hero-orbs {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-}
-.orb {
-  position: absolute; border-radius: 50%;
-  filter: blur(80px); opacity: 0.12;
-  animation: float 8s ease-in-out infinite;
-}
-.orb1 { width: 600px; height: 600px; background: #2563eb; top: -200px; right: -100px; animation-delay: 0s; }
-.orb2 { width: 400px; height: 400px; background: #6366f1; bottom: -100px; left: -100px; animation-delay: -3s; }
-.orb3 { width: 300px; height: 300px; background: #0ea5e9; top: 40%; left: 40%; animation-delay: -6s; }
-@keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-answer.open{max-height:500px;padding-top:12px}
+.faq-chevron{transition:transform .3s ease}
+.faq-chevron.open{transform:rotate(180deg)}
 
-.hero-content {
-  display: grid; grid-template-columns: 1fr 1.1fr;
-  gap: 60px; align-items: center;
-  position: relative; z-index: 1;
-}
-.hero-left {}
-.hero-eyebrow { margin-bottom: 24px; }
-.hero-title {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 800; line-height: 1.1;
-  margin-bottom: 20px;
-}
-.hero-title span {
-  background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-desc { font-size: 1.1rem; color: var(--text2); margin-bottom: 32px; max-width: 480px; line-height: 1.75; }
-.hero-stats {
-  display: flex; gap: 32px; align-items: flex-start;
-}
-.hero-stat {}
-.hero-stat-val { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--accent); }
-.hero-stat-lbl { font-size: 0.78rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+.step-line{position:relative}
+.step-line::before{content:'';position:absolute;left:20px;top:48px;bottom:0;width:2px;background:linear-gradient(to bottom,#f04438,#fde8e6)}
 
-/* ===== CONVERTER CARD ===== */
-.converter-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius3);
-  padding: 32px;
-  box-shadow: var(--shadow2);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-.converter-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--grad2);
-}
-.converter-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 24px;
-}
-.converter-title { font-size: 1rem; font-weight: 700; color: var(--text); }
-.converter-mode-btns {
-  display: flex; gap: 4px;
-  background: var(--bg); border-radius: 10px; padding: 4px;
-}
-.mode-btn {
-  padding: 5px 12px; border-radius: 7px; border: none; cursor: pointer;
-  font-size: 0.78rem; font-weight: 600; color: var(--text3);
-  background: transparent; transition: var(--transition);
-}
-.mode-btn.active { background: var(--surface); color: var(--accent); box-shadow: var(--shadow3); }
+/* Animated counter */
+.counter-digit{display:inline-block;transition:all .3s ease}
 
-.input-group { margin-bottom: 12px; }
-.input-row {
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 8px; align-items: stretch;
-}
-.input-label {
-  font-size: 0.78rem; font-weight: 600; color: var(--text3);
-  text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-.num-input {
-  width: 100%; padding: 14px 18px;
-  background: var(--bg); border: 1.5px solid var(--border2);
-  border-radius: 12px; font-size: 1.15rem;
-  font-family: 'JetBrains Mono', monospace; font-weight: 600;
-  color: var(--text); outline: none;
-  transition: var(--transition);
-}
-.num-input:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 4px var(--accent-light); }
-.num-input::placeholder { color: var(--text3); font-size: 1rem; font-weight: 400; }
-.unit-select {
-  padding: 14px 16px;
-  background: var(--bg); border: 1.5px solid var(--border2);
-  border-radius: 12px; font-size: 0.9rem; font-weight: 600;
-  color: var(--text); outline: none; cursor: pointer;
-  transition: var(--transition); appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  padding-right: 36px;
-}
-.unit-select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light); }
+.history-item{animation:slideIn .3s ease both}
 
-.swap-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--accent-light); border: 1.5px solid var(--border2);
-  cursor: pointer; margin: 8px auto;
-  font-size: 1.1rem; transition: var(--transition); color: var(--accent);
-}
-.swap-btn:hover { background: var(--accent); color: #fff; transform: rotate(180deg); }
+.copy-toast{position:fixed;top:20px;right:20px;z-index:9999;transform:translateY(-100px);opacity:0;transition:all .4s ease}
+.copy-toast.show{transform:translateY(0);opacity:1}
 
-.result-display {
-  background: var(--accent-light);
-  border: 1.5px solid var(--border2);
-  border-radius: 14px; padding: 20px;
-  margin: 16px 0;
-  position: relative; overflow: hidden;
-}
-.result-display::before {
-  content: 'RESULT';
-  position: absolute; top: 10px; right: 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem; color: var(--accent3); letter-spacing: 0.1em;
-}
-.result-val {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.9rem; font-weight: 600; color: var(--accent);
-  transition: all 0.3s;
-}
-.result-label { font-size: 0.82rem; color: var(--text3); margin-top: 4px; }
-.result-formatted { font-size: 0.85rem; color: var(--text2); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
-
-.converter-actions {
-  display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;
-}
-.btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 9px 16px; border-radius: 10px; border: none; cursor: pointer;
-  font-size: 0.84rem; font-weight: 600; transition: var(--transition);
-}
-.btn-primary { background: var(--grad1); color: #fff; box-shadow: 0 2px 10px rgba(37,99,235,0.25); }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(37,99,235,0.35); }
-.btn-ghost { background: var(--bg); border: 1px solid var(--border2); color: var(--text2); }
-.btn-ghost:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-.btn-danger { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #ef4444; }
-.btn-danger:hover { background: rgba(239,68,68,0.15); }
-
-.preset-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-.preset-btn {
-  padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border2);
-  background: var(--bg); color: var(--text3); font-size: 0.8rem; font-weight: 600;
-  cursor: pointer; transition: var(--transition); font-family: 'JetBrains Mono', monospace;
-}
-.preset-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-
-/* Voice btn */
-.voice-btn {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: var(--bg); border: 1.5px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: var(--transition); color: var(--text3);
-  font-size: 1.1rem;
-}
-.voice-btn:hover { background: rgba(239,68,68,0.1); color: #ef4444; border-color: rgba(239,68,68,0.3); }
-.voice-btn.recording { background: rgba(239,68,68,0.15); color: #ef4444; border-color: #ef4444; animation: record-pulse 1s ease-in-out infinite; }
-@keyframes record-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.3)} 50%{box-shadow:0 0 0 8px rgba(239,68,68,0)} }
-
-/* ===== TOAST ===== */
-.toast {
-  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-  background: var(--text); color: var(--bg);
-  padding: 12px 20px; border-radius: 12px;
-  font-size: 0.88rem; font-weight: 600;
-  transform: translateY(80px); opacity: 0;
-  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  pointer-events: none; max-width: 300px;
-  display: flex; align-items: center; gap: 8px;
-}
-.toast.show { transform: translateY(0); opacity: 1; }
-
-/* ===== SECTIONS ===== */
-section { padding: 96px 0; position: relative; }
-section:nth-child(even) { background: var(--bg2); }
-
-/* ===== HOW IT WORKS ===== */
-.how-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center; margin-top: 56px;
-}
-.steps { display: flex; flex-direction: column; gap: 0; }
-.step {
-  display: flex; gap: 20px; padding: 24px 0;
-  border-bottom: 1px solid var(--border);
-  animation: fadeSlideIn 0.6s ease both;
-}
-.step:last-child { border-bottom: none; }
-.step-num {
-  flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
-  background: var(--grad1); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-}
-.step-body {}
-.step-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-.step-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.65; }
-
-.formula-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius2);
-  padding: 36px;
-  box-shadow: var(--shadow);
-  position: relative; overflow: hidden;
-}
-.formula-grid {
-  display: flex; flex-direction: column; gap: 20px; margin-top: 24px;
-}
-.formula-item {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px;
-  display: flex; align-items: center; gap: 16px;
-  transition: var(--transition);
-}
-.formula-item:hover { border-color: var(--accent); transform: translateX(4px); }
-.formula-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: var(--accent-light); border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; flex-shrink: 0;
-}
-.formula-text .label { font-size: 0.78rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
-.formula-text .eq { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); font-size: 0.95rem; margin-top: 3px; }
-
-/* ===== SVG INFOGRAPHIC ===== */
-.infographic-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius2);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.infographic-wrap svg text { font-family: 'DM Sans', sans-serif; }
-
-/* ===== COMPARISON TABLE ===== */
-.comparison-wrap {
-  margin-top: 56px;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius2);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.comp-table { width: 100%; border-collapse: collapse; }
-.comp-table th {
-  background: var(--grad1); color: #fff;
-  padding: 16px 20px; text-align: left;
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem;
-  letter-spacing: 0.05em; text-transform: uppercase;
-}
-.comp-table td {
-  padding: 14px 20px; border-bottom: 1px solid var(--border);
-  font-size: 0.92rem; color: var(--text2); transition: var(--transition);
-}
-.comp-table tr:hover td { background: var(--accent-light); color: var(--text); }
-.comp-table tr:last-child td { border-bottom: none; }
-.comp-table .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); }
-.highlight-row td { background: var(--accent-light) !important; font-weight: 600; }
-
-/* ===== USE CASES ===== */
-.use-cases-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; margin-top: 56px;
-}
-.use-case-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius2);
-  padding: 28px 24px;
-  transition: var(--transition);
-  position: relative; overflow: hidden;
-}
-.use-case-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: var(--grad2); opacity: 0;
-  transition: var(--transition);
-}
-.use-case-card:hover { transform: translateY(-4px); box-shadow: var(--shadow2); border-color: var(--accent); }
-.use-case-card:hover::before { opacity: 0.03; }
-.use-case-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  background: var(--accent-light); border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 18px;
-}
-.use-case-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
-.use-case-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
-
-/* ===== ADVANCED PANEL ===== */
-.adv-grid {
-  display: grid; grid-template-columns: 1.2fr 1fr;
-  gap: 32px; margin-top: 56px;
-}
-.panel-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius2);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.panel-header {
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--bg);
-}
-.panel-header-title { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-.panel-body { padding: 24px; }
-
-/* History */
-.history-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
-.history-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 11px 14px; border-radius: 10px;
-  background: var(--bg); border: 1px solid var(--border);
-  font-size: 0.85rem; transition: var(--transition);
-  animation: slideInRight 0.3s ease both;
-}
-.history-item:hover { border-color: var(--accent); background: var(--accent-light); }
-.hist-from { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text); }
-.hist-to { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); }
-.hist-arrow { color: var(--text3); font-size: 0.8rem; }
-.hist-time { font-size: 0.72rem; color: var(--text3); }
-.empty-hist {
-  text-align: center; padding: 32px; color: var(--text3);
-  font-size: 0.88rem;
-}
-.empty-hist-icon { font-size: 2rem; margin-bottom: 8px; opacity: 0.5; }
-
-/* Bulk converter */
-.bulk-textarea {
-  width: 100%; min-height: 120px;
-  background: var(--bg); border: 1.5px solid var(--border2);
-  border-radius: 12px; padding: 14px;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
-  color: var(--text); outline: none; resize: vertical;
-  transition: var(--transition); line-height: 1.7;
-}
-.bulk-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light); }
-.bulk-results {
-  margin-top: 12px; padding: 14px;
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 12px; font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem; color: var(--accent);
-  min-height: 80px; line-height: 1.8; white-space: pre;
-  overflow-x: auto;
-}
-.bulk-opts { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
-.bulk-unit-select {
-  padding: 7px 12px; border-radius: 8px;
-  background: var(--bg); border: 1px solid var(--border2);
-  color: var(--text); font-size: 0.82rem; outline: none; cursor: pointer;
-}
-
-/* ===== FAQ ===== */
-.faq-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px; margin-top: 56px;
-}
-.faq-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden; transition: var(--transition);
-}
-.faq-item:hover { border-color: var(--accent); }
-.faq-item.open { border-color: var(--accent); box-shadow: var(--shadow); }
-.faq-q {
-  padding: 18px 20px; cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  font-weight: 600; font-size: 0.95rem; color: var(--text);
-  user-select: none;
-}
-.faq-icon {
-  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
-  background: var(--accent-light); color: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; transition: var(--transition);
-}
-.faq-item.open .faq-icon { background: var(--accent); color: #fff; transform: rotate(45deg); }
-.faq-a {
-  max-height: 0; overflow: hidden;
-  padding: 0 20px; color: var(--text2); font-size: 0.92rem; line-height: 1.7;
-  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s;
-}
-.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 18px; }
-
-/* ===== NUMBER SYSTEM VISUAL ===== */
-.number-system-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 32px; margin-top: 56px;
-}
-.ns-card {
-  background: var(--surface); border: 1px solid var(--border2);
-  border-radius: var(--radius2); padding: 28px; box-shadow: var(--shadow);
-}
-.ns-card-title {
-  font-size: 1rem; font-weight: 700; margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
-}
-.ns-tag {
-  padding: 3px 10px; border-radius: 6px; font-size: 0.72rem;
-  font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-}
-.ns-tag.global { background: rgba(37,99,235,0.12); color: var(--accent); }
-.ns-tag.indian { background: rgba(16,185,129,0.12); color: #10b981; }
-.ns-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 0; border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
-}
-.ns-row:last-child { border-bottom: none; }
-.ns-name { color: var(--text2); }
-.ns-val { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text); }
-.ns-num { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text3); }
-
-/* ===== CHART VISUAL (SVG) ===== */
-.chart-wrap {
-  background: var(--surface); border: 1px solid var(--border2);
-  border-radius: var(--radius2); padding: 28px; box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-/* ===== CTA SECTION ===== */
-.cta-section {
-  background: var(--grad3) !important;
-  text-align: center; padding: 80px 0;
-}
-.cta-section h2 { color: #fff; font-size: clamp(2rem,4vw,2.8rem); margin-bottom: 16px; }
-.cta-section p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 500px; margin: 0 auto 32px; }
-.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.btn-white { background: #fff; color: #1e3a5f; font-weight: 700; }
-.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-.btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); font-weight: 600; }
-.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-
-/* ===== FOOTER ===== */
-footer {
-  background: var(--text); color: rgba(255,255,255,0.6);
-  padding: 48px 0 28px;
-}
-.footer-inner {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px; margin-bottom: 40px;
-}
-.footer-brand .logo { color: #fff; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 12px; }
-.footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 260px; }
-.footer-col h4 { color: #fff; font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.footer-col ul a { color: rgba(255,255,255,0.5); font-size: 0.88rem; transition: var(--transition); }
-.footer-col ul a:hover { color: var(--accent3); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
-.footer-bottom p { font-size: 0.82rem; }
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeSlideIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-@keyframes slideInRight { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
-@keyframes countUp { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
-@keyframes shimmer {
-  0%{background-position:-400px 0} 100%{background-position:400px 0}
-}
-.shimmer {
-  background: linear-gradient(90deg, var(--bg) 25%, var(--accent-light) 37%, var(--bg) 63%);
-  background-size: 400px 100%; animation: shimmer 1.4s infinite;
-}
-
-/* Scroll animations */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* ===== MOBILE MENU ===== */
-.mobile-menu {
-  display: none; position: fixed; inset: 0; z-index: 999;
-  background: var(--surface2); backdrop-filter: blur(20px);
-  flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
-.mobile-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text); }
-
-/* ===== PROGRESS BAR ===== */
-#progress-bar {
-  position: fixed; top: 0; left: 0; height: 2px;
-  background: var(--grad2); z-index: 9999;
-  transition: width 0.1s; width: 0%;
-}
-
-/* ===== NUMBER SCALER VISUAL ===== */
-.scale-visual {
-  display: flex; align-items: flex-end; gap: 8px; height: 140px;
-  padding: 16px; background: var(--bg); border-radius: 12px;
-  margin-top: 20px; justify-content: center;
-}
-.scale-bar {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  flex: 1;
-}
-.scale-bar-inner {
-  width: 100%; border-radius: 6px 6px 0 0;
-  background: var(--grad2); transition: height 1s cubic-bezier(0.34,1.56,0.64,1);
-}
-.scale-bar-label { font-size: 0.68rem; font-weight: 700; color: var(--text3); text-align: center; letter-spacing: 0.05em; }
-.scale-bar-val { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); font-weight: 600; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .hero-content { grid-template-columns: 1fr; gap: 40px; }
-  .how-grid { grid-template-columns: 1fr; }
-  .adv-grid { grid-template-columns: 1fr; }
-  .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
-  .faq-grid { grid-template-columns: 1fr; }
-  .number-system-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
-  .hero-stats { flex-wrap: wrap; gap: 20px; }
-  .use-cases-grid { grid-template-columns: 1fr; }
-  .converter-card { padding: 24px 18px; }
-  .result-val { font-size: 1.5rem; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-  .cta-btns { flex-direction: column; align-items: center; }
-}
+.comparison-cell{transition:all .3s ease}
+.comparison-cell:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(59,130,246,.15)}
 </style>
-</head>
-<body>
-<div class="noise-bg"></div>
-<div id="progress-bar"></div>
-
-<!-- ===== NAV ===== -->
-<nav id="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">₿</div>
-        BtoC Converter
-      </a>
-      <ul class="nav-links">
-        <li><a href="#converter" class="active">Converter</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#guide">Guide</a></li>
-        <li><a href="#advanced">Advanced</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-        <button class="nav-cta" onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})">Convert Now</button>
-        <div class="hamburger" id="hamburger">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Billion to Crore Converter","description":"Convert billions to crores, millions to lakhs instantly with real-time calculations","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many crores is 1 billion?","acceptedAnswer":{"@type":"Answer","text":"1 billion equals 100 crores. The conversion formula is: Crores = Billions × 100."}},{"@type":"Question","name":"What is the difference between billion and crore?","acceptedAnswer":{"@type":"Answer","text":"Billion is part of the international numbering system (1 billion = 1,000,000,000), while crore is part of the Indian numbering system (1 crore = 10,000,000). 1 billion = 100 crores."}},{"@type":"Question","name":"How to convert crore to billion?","acceptedAnswer":{"@type":"Answer","text":"To convert crores to billions, divide the number of crores by 100. For example, 500 crores = 5 billion."}}]}
+</script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto num-grid">
+   <!-- Floating background numbers -->
+   <div id="floatingNumbers" class="absolute inset-0 pointer-events-none"></div><!-- Toast -->
+   <div id="copyToast" class="copy-toast glass px-5 py-3 rounded-xl shadow-lg flex items-center gap-2">
+    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> <span class="text-sm font-medium">Copied to clipboard!</span>
+   </div><!-- Navigation -->
+   <nav class="nav-bar glass sticky top-0 z-50 border-b border-white/20">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+     <a href="#hero" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+       <span class="text-white font-heading text-[10px] font-bold">CN</span>
+      </div><span class="font-heading font-bold text-sm text-brand-900">ConvertNexa</span> </a>
+     <div class="hidden md:flex items-center gap-6">
+      <a href="#hero" class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600">Converter</a> <a href="#how" class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600">How It Works</a> <a href="#guide" class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600">Guide</a> <a href="#compare" class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600">Compare</a> <a href="#faq" class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600">FAQ</a>
+     </div>
+     <div class="flex items-center gap-3">
+      <button id="darkToggle" class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center hover:bg-brand-100 transition-colors" aria-label="Toggle dark mode"> <i data-lucide="moon" class="w-4 h-4 text-brand-600" id="darkIcon"></i> </button> <button id="mobileMenu" class="md:hidden w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center" aria-label="Menu"> <i data-lucide="menu" class="w-4 h-4 text-brand-600"></i> </button>
+     </div>
     </div>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mobile-close" id="mobileClose">✕</span>
-  <a href="#converter" onclick="closeMobile()">Converter</a>
-  <a href="#how-it-works" onclick="closeMobile()">How It Works</a>
-  <a href="#guide" onclick="closeMobile()">Guide</a>
-  <a href="#advanced" onclick="closeMobile()">Advanced</a>
-  <a href="#faq" onclick="closeMobile()">FAQ</a>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero" id="converter">
-  <div class="hero-orbs">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-  </div>
-  <div class="grid-bg"></div>
-  <div class="container">
-    <div class="hero-content">
-      <!-- Left -->
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span class="badge">Smart Financial Converter</span>
-        </div>
-        <h1 class="hero-title">
-          Billion to Crore<br><span>Converter Tool</span>
-        </h1>
-        <p class="hero-desc">
-          Instantly convert between global and Indian numbering systems — Billion, Crore, Million, Lakh and more — with real-time calculation, voice input, and detailed financial breakdowns.
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-val" id="statConv">1B = 100Cr</div>
-            <div class="hero-stat-lbl">Core Formula</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-val">6+</div>
-            <div class="hero-stat-lbl">Unit Types</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-val">Instant</div>
-            <div class="hero-stat-lbl">Real-time</div>
-          </div>
-        </div>
+   </nav><!-- Hero / Converter -->
+   <section id="hero" class="py-12 md:py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center mb-10">
+     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold mb-4">
+      <i data-lucide="zap" class="w-3 h-3"></i> Instant &amp; Accurate
+     </div>
+     <h1 id="heroTitle" class="font-heading text-3xl md:text-5xl font-bold text-brand-900 mb-4 leading-tight">Billion to Crore<br>
+       Converter</h1>
+     <p id="heroSubtitle" class="text-gray-500 text-base md:text-lg max-w-xl mx-auto">Convert large numbers between international and Indian numbering systems — instantly, accurately, beautifully.</p>
+    </div><!-- Main Converter Card -->
+    <div class="max-w-2xl mx-auto section-card p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+       <i data-lucide="calculator" class="w-5 h-5 text-white"></i>
       </div>
-
-      <!-- Converter Card -->
       <div>
-        <div class="converter-card" id="converterCard">
-          <div class="converter-header">
-            <span class="converter-title">⚡ Smart Converter</span>
-            <div class="converter-mode-btns">
-              <button class="mode-btn active" id="modeSimple" onclick="setMode('simple')">Simple</button>
-              <button class="mode-btn" id="modeAdvanced" onclick="setMode('advanced')">Advanced</button>
-            </div>
-          </div>
-
-          <!-- Presets -->
-          <div>
-            <div class="input-label">Quick Presets</div>
-            <div class="preset-btns">
-              <button class="preset-btn" onclick="setPreset(0.1)">100M</button>
-              <button class="preset-btn" onclick="setPreset(1)">1B</button>
-              <button class="preset-btn" onclick="setPreset(5)">5B</button>
-              <button class="preset-btn" onclick="setPreset(10)">10B</button>
-              <button class="preset-btn" onclick="setPreset(50)">50B</button>
-              <button class="preset-btn" onclick="setPreset(100)">100B</button>
-            </div>
-          </div>
-
-          <!-- Input -->
-          <div class="input-group">
-            <div class="input-label">Input Value</div>
-            <div class="input-row">
-              <input type="number" class="num-input" id="inputVal" placeholder="Enter number..." oninput="calculate()" min="0" step="any">
-              <select class="unit-select" id="fromUnit" onchange="calculate()">
-                <option value="billion">Billion</option>
-                <option value="million">Million</option>
-                <option value="crore">Crore</option>
-                <option value="lakh">Lakh</option>
-                <option value="thousand">Thousand</option>
-                <option value="trillion">Trillion</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Swap -->
-          <button class="swap-btn" onclick="swapUnits()" title="Swap units">⇅</button>
-
-          <!-- Output -->
-          <div class="input-group">
-            <div class="input-label">Convert To</div>
-            <div class="input-row">
-              <div class="result-display" style="flex:1">
-                <div class="result-val" id="resultVal">—</div>
-                <div class="result-label" id="resultLabel">Enter a value above to convert</div>
-                <div class="result-formatted" id="resultFormatted"></div>
-              </div>
-              <select class="unit-select" id="toUnit" onchange="calculate()" style="align-self:stretch">
-                <option value="crore" selected>Crore</option>
-                <option value="billion">Billion</option>
-                <option value="million">Million</option>
-                <option value="lakh">Lakh</option>
-                <option value="thousand">Thousand</option>
-                <option value="trillion">Trillion</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Actions -->
-          <div class="converter-actions">
-            <button class="btn btn-primary" onclick="copyResult()">📋 Copy</button>
-            <button class="btn btn-ghost" onclick="shareResult()">🔗 Share</button>
-            <button class="btn btn-ghost" id="voiceBtn" onclick="startVoice()">🎤 Voice</button>
-            <button class="btn btn-danger" onclick="resetConverter()">↺ Reset</button>
-          </div>
-
-          <!-- All conversions (advanced mode) -->
-          <div id="allConversions" style="display:none; margin-top:20px;">
-            <div class="input-label" style="margin-bottom:10px">All Conversions</div>
-            <div id="allConvList" style="display:flex;flex-direction:column;gap:6px;"></div>
-          </div>
-        </div>
+       <h2 class="font-heading font-bold text-brand-900 text-sm">Smart Converter</h2>
+       <p class="text-xs text-gray-400">Real-time conversion</p>
       </div>
+     </div><!-- Input Row -->
+     <div class="flex flex-col md:flex-row gap-3 mb-4">
+      <div class="flex-1">
+       <label for="inputVal" class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Enter Value</label> <input id="inputVal" type="text" inputmode="decimal" placeholder="e.g. 1.5" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-lg font-heading font-bold text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all" autocomplete="off">
+      </div>
+      <div class="w-full md:w-40">
+       <label for="fromUnit" class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">From</label> <select id="fromUnit" class="w-full px-3 py-3 rounded-xl border border-gray-200 text-sm font-semibold text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white appearance-none cursor-pointer"> <option value="billion">Billion</option> <option value="million">Million</option> <option value="crore">Crore</option> <option value="lakh">Lakh</option> </select>
+      </div>
+     </div><!-- Swap Button -->
+     <div class="flex justify-center my-3">
+      <button id="swapBtn" class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center hover:bg-brand-100 transition-all hover:rotate-180 duration-300" aria-label="Swap units"> <i data-lucide="arrow-up-down" class="w-4 h-4 text-brand-600"></i> </button>
+     </div><!-- Output Row -->
+     <div class="flex flex-col md:flex-row gap-3 mb-5">
+      <div class="flex-1">
+       <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Result</label>
+       <div id="resultDisplay" class="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-brand-50 to-blue-50 border border-brand-100 text-lg font-heading font-bold text-brand-700 min-h-[50px] flex items-center">
+        <span id="resultText">—</span>
+       </div>
+      </div>
+      <div class="w-full md:w-40">
+       <label for="toUnit" class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">To</label> <select id="toUnit" class="w-full px-3 py-3 rounded-xl border border-gray-200 text-sm font-semibold text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white appearance-none cursor-pointer"> <option value="crore" selected>Crore</option> <option value="lakh">Lakh</option> <option value="billion">Billion</option> <option value="million">Million</option> </select>
+      </div>
+     </div><!-- Formula display -->
+     <div id="formulaBar" class="px-4 py-2 rounded-lg bg-gray-50 text-xs font-mono text-gray-500 mb-5 hidden">
+      <span id="formulaText"></span>
+     </div><!-- Action Buttons -->
+     <div class="flex flex-wrap gap-2 mb-5">
+      <button onclick="copyResult()" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition-colors"> <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy </button> <button onclick="resetConverter()" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-xs font-semibold hover:bg-gray-200 transition-colors"> <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset </button> <button id="voiceBtn" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-xs font-semibold hover:bg-gray-200 transition-colors"> <i data-lucide="mic" class="w-3.5 h-3.5"></i> Voice </button>
+     </div><!-- Presets -->
+     <div class="flex flex-wrap gap-2">
+      <span class="text-xs text-gray-400 mr-1 self-center">Quick:</span> <button class="preset-btn px-3 py-1.5 rounded-lg bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100" onclick="setPreset(1)">1B</button> <button class="preset-btn px-3 py-1.5 rounded-lg bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100" onclick="setPreset(10)">10B</button> <button class="preset-btn px-3 py-1.5 rounded-lg bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100" onclick="setPreset(100)">100B</button> <button class="preset-btn px-3 py-1.5 rounded-lg bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100" onclick="setPreset(0.5)">0.5B</button> <button class="preset-btn px-3 py-1.5 rounded-lg bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100" onclick="setPreset(7.5)">7.5B</button>
+     </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== INTRO SECTION ===== -->
-<section id="intro">
-  <div class="container">
-    <div class="section-label">Introduction</div>
-    <h2 class="section-title reveal">Understanding Large Number Systems</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start">
-      <div class="reveal reveal-delay-1">
-        <p class="section-desc" style="max-width:100%">
-          The world uses two primary large number systems: the <strong>International System</strong> (Thousand → Million → Billion → Trillion) and the <strong>Indian System</strong> (Hazar → Lakh → Crore). These systems diverge significantly above 100,000 making <em>billion to crore conversion</em> essential for finance professionals, students, and business analysts working across global markets.
-        </p>
-        <br>
-        <p style="color:var(--text2);font-size:0.95rem;line-height:1.75">
-          Whether you're reading a global financial report in Billions or an Indian stock market report in Crores, our converter bridges the gap instantly. The core formula is simple: <strong>1 Billion = 100 Crore</strong>, yet the broader number system differences run deep — affecting how we read corporate revenues, national budgets, and investment values.
-        </p>
-        <br>
-        <!-- Scale Visual -->
-        <div class="scale-visual" id="scaleVisual">
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb1" style="height:12px;opacity:0.6"></div>
-            <div class="scale-bar-val">1K</div>
-            <div class="scale-bar-label">Thousand</div>
-          </div>
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb2" style="height:30px;opacity:0.7"></div>
-            <div class="scale-bar-val">1L</div>
-            <div class="scale-bar-label">Lakh</div>
-          </div>
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb3" style="height:50px;opacity:0.8"></div>
-            <div class="scale-bar-val">1M</div>
-            <div class="scale-bar-label">Million</div>
-          </div>
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb4" style="height:70px;opacity:0.9"></div>
-            <div class="scale-bar-val">1Cr</div>
-            <div class="scale-bar-label">Crore</div>
-          </div>
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb5" style="height:90px"></div>
-            <div class="scale-bar-val">1B</div>
-            <div class="scale-bar-label">Billion</div>
-          </div>
-          <div class="scale-bar">
-            <div class="scale-bar-inner" id="sb6" style="height:110px"></div>
-            <div class="scale-bar-val">1T</div>
-            <div class="scale-bar-label">Trillion</div>
-          </div>
-        </div>
+   </section><!-- Calculation History -->
+   <section class="py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+     <div id="historyPanel" class="hidden">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="font-heading font-bold text-brand-900 text-sm flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> Recent Conversions</h3><button onclick="clearHistory()" class="text-xs text-gray-400 hover:text-red-500 transition-colors">Clear all</button>
       </div>
-      <div class="reveal reveal-delay-2">
-        <!-- SVG Number System Infographic -->
-        <div class="infographic-wrap">
-          <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
-            <defs>
-              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#2563eb"/>
-                <stop offset="100%" style="stop-color:#6366f1"/>
-              </linearGradient>
-              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#10b981"/>
-                <stop offset="100%" style="stop-color:#0891b2"/>
-              </linearGradient>
-            </defs>
-            <!-- Background -->
-            <rect width="480" height="360" rx="0" fill="var(--surface,#fff)"/>
-            <!-- Title -->
-            <text x="240" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text,#0a0e1a)" font-family="Syne,sans-serif">Number Scale Comparison</text>
-            <!-- Divider -->
-            <line x1="20" y1="44" x2="460" y2="44" stroke="var(--border,rgba(100,130,255,0.15))" stroke-width="1"/>
-            <!-- Column Headers -->
-            <rect x="20" y="54" width="200" height="28" rx="6" fill="url(#grad1)"/>
-            <text x="120" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="DM Sans,sans-serif">INTERNATIONAL SYSTEM</text>
-            <rect x="260" y="54" width="200" height="28" rx="6" fill="url(#grad2)"/>
-            <text x="360" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="DM Sans,sans-serif">INDIAN SYSTEM</text>
-            <!-- Rows -->
-            <!-- Row 1 -->
-            <rect x="20" y="90" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
-            <text x="30" y="111" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Thousand</text>
-            <text x="215" y="111" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">1,000</text>
-            <rect x="260" y="90" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
-            <text x="270" y="111" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Hazar</text>
-            <text x="455" y="111" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">1,000</text>
-            <!-- Connector -->
-            <line x1="220" y1="108" x2="260" y2="108" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <text x="240" y="106" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
-            <!-- Row 2 -->
-            <rect x="20" y="134" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
-            <text x="30" y="155" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Million</text>
-            <text x="215" y="155" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">10,00,000</text>
-            <rect x="260" y="134" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
-            <text x="270" y="155" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">10 Lakh</text>
-            <text x="455" y="155" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">10,00,000</text>
-            <line x1="220" y1="152" x2="260" y2="152" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <text x="240" y="150" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
-            <!-- Row 3 — Highlighted -->
-            <rect x="20" y="178" width="200" height="36" rx="6" fill="rgba(37,99,235,0.14)"/>
-            <text x="30" y="199" font-size="12" font-weight="700" fill="#2563eb" font-family="DM Sans,sans-serif">1 Billion ★</text>
-            <text x="215" y="199" font-size="11" font-family="JetBrains Mono,monospace" fill="#2563eb" text-anchor="middle">1,00,00,00,000</text>
-            <rect x="260" y="178" width="200" height="36" rx="6" fill="rgba(16,185,129,0.14)"/>
-            <text x="270" y="199" font-size="12" font-weight="700" fill="#10b981" font-family="DM Sans,sans-serif">100 Crore ★</text>
-            <text x="455" y="199" font-size="11" font-family="JetBrains Mono,monospace" fill="#10b981" text-anchor="end">100 Cr</text>
-            <line x1="220" y1="196" x2="260" y2="196" stroke="#f59e0b" stroke-width="2"/>
-            <text x="240" y="193" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="700" font-family="DM Sans,sans-serif">=</text>
-            <!-- Row 4 -->
-            <rect x="20" y="222" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
-            <text x="30" y="243" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Trillion</text>
-            <text x="215" y="243" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">10,00,00,00,00,000</text>
-            <rect x="260" y="222" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
-            <text x="270" y="243" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Lakh Crore</text>
-            <text x="455" y="243" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">1,00,000 Cr</text>
-            <line x1="220" y1="240" x2="260" y2="240" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <text x="240" y="238" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
-            <!-- Key Insight -->
-            <rect x="20" y="272" width="440" height="72" rx="10" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
-            <text x="240" y="294" text-anchor="middle" font-size="11" fill="#d97706" font-weight="700" font-family="Syne,sans-serif">KEY INSIGHT</text>
-            <text x="240" y="312" text-anchor="middle" font-size="13" fill="var(--text,#0a0e1a)" font-weight="700" font-family="JetBrains Mono,monospace">1 Billion = 100 Crore = 1,000 Million</text>
-            <text x="240" y="330" text-anchor="middle" font-size="10" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">The International system groups digits in threes; Indian system in twos after the first group</text>
-          </svg>
-        </div>
-      </div>
+      <div id="historyList" class="space-y-2"></div>
+     </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== HOW IT WORKS ===== -->
-<section id="how-it-works">
-  <div class="container">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title reveal">The Conversion Formula</h2>
-    <p class="section-desc reveal reveal-delay-1">Simple math, clear results. Here's the step-by-step breakdown of how large number conversion works between international and Indian systems.</p>
-    <div class="how-grid">
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-body">
-            <div class="step-title">Identify Your Input Unit</div>
-            <div class="step-desc">Choose whether you're working with Billions, Millions, Trillions (international) or Crores, Lakhs, Thousands (Indian system). This determines the base multiplier.</div>
-          </div>
-        </div>
-        <div class="step reveal reveal-delay-1">
-          <div class="step-num">02</div>
-          <div class="step-body">
-            <div class="step-title">Apply the Multiplier</div>
-            <div class="step-desc">Each unit has a fixed numeric value. For example, 1 Billion = 1,000,000,000 (10⁹). Multiply your input by this base value to get the raw number.</div>
-          </div>
-        </div>
-        <div class="step reveal reveal-delay-2">
-          <div class="step-num">03</div>
-          <div class="step-body">
-            <div class="step-title">Divide by Target Unit</div>
-            <div class="step-desc">Divide the raw number by the target unit's value. 1 Crore = 10,000,000 (10⁷), so 1 Billion ÷ 10⁷ = 100 Crore. The result is your converted value.</div>
-          </div>
-        </div>
-        <div class="step reveal reveal-delay-3">
-          <div class="step-num">04</div>
-          <div class="step-body">
-            <div class="step-title">Format and Verify</div>
-            <div class="step-desc">Apply proper Indian or International number formatting. 100 Crore becomes 1,00,00,00,000 in Indian format — same number, different presentation.</div>
-          </div>
-        </div>
+   </section><!-- Bulk Converter -->
+   <section class="py-10 px-4">
+    <div class="max-w-2xl mx-auto section-card p-6">
+     <div class="flex items-center gap-3 mb-5">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+       <i data-lucide="layers" class="w-5 h-5 text-white"></i>
       </div>
-      <div class="formula-card reveal reveal-delay-1">
-        <div class="section-label" style="margin-bottom:8px">Core Formulas</div>
-        <div class="formula-grid">
-          <div class="formula-item">
-            <div class="formula-icon">🔵</div>
-            <div class="formula-text">
-              <div class="label">Billion → Crore</div>
-              <div class="eq">1 B = 100 Cr &nbsp;[×100]</div>
-            </div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-icon">🟢</div>
-            <div class="formula-text">
-              <div class="label">Crore → Billion</div>
-              <div class="eq">1 Cr = 0.01 B &nbsp;[÷100]</div>
-            </div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-icon">🟡</div>
-            <div class="formula-text">
-              <div class="label">Million → Lakh</div>
-              <div class="eq">1 M = 10 L &nbsp;[×10]</div>
-            </div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-icon">🟣</div>
-            <div class="formula-text">
-              <div class="label">Billion → Million</div>
-              <div class="eq">1 B = 1,000 M &nbsp;[×1000]</div>
-            </div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-icon">🔴</div>
-            <div class="formula-text">
-              <div class="label">Trillion → Billion</div>
-              <div class="eq">1 T = 1,000 B &nbsp;[×1000]</div>
-            </div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-icon">🔷</div>
-            <div class="formula-text">
-              <div class="label">Trillion → Crore</div>
-              <div class="eq">1 T = 1,00,000 Cr &nbsp;[×10⁵]</div>
-            </div>
-          </div>
-        </div>
+      <div>
+       <h2 class="font-heading font-bold text-brand-900 text-sm">Bulk Converter</h2>
+       <p class="text-xs text-gray-400">Convert multiple values at once</p>
       </div>
+     </div><label for="bulkInput" class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Enter values (one per line)</label> <textarea id="bulkInput" rows="4" placeholder="1
+5.5
+10
+100" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-mono text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-400 mb-3 resize-none"></textarea>
+     <div class="flex gap-2 mb-4">
+      <select id="bulkFrom" class="px-3 py-2 rounded-lg border border-gray-200 text-xs font-semibold bg-white"> <option value="billion">Billion</option><option value="million">Million</option><option value="crore">Crore</option><option value="lakh">Lakh</option> </select> <span class="self-center text-gray-400">→</span> <select id="bulkTo" class="px-3 py-2 rounded-lg border border-gray-200 text-xs font-semibold bg-white"> <option value="crore" selected>Crore</option><option value="lakh">Lakh</option><option value="billion">Billion</option><option value="million">Million</option> </select> <button onclick="bulkConvert()" class="ml-auto px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition-colors">Convert All</button>
+     </div>
+     <div id="bulkResults" class="hidden space-y-1.5"></div>
     </div>
-  </div>
-</section>
-
-<!-- ===== GUIDE / NUMBER SYSTEMS ===== -->
-<section id="guide">
-  <div class="container">
-    <div class="section-label">Detailed Guide</div>
-    <h2 class="section-title reveal">Global vs Indian Numbering Systems</h2>
-    <p class="section-desc reveal reveal-delay-1">Two distinct systems for expressing the same quantities. Understanding both is critical for international finance and data analysis.</p>
-    <div class="number-system-grid">
-      <div class="ns-card reveal">
-        <div class="ns-card-title">
-          🌍 International System <span class="ns-tag global">Global</span>
-        </div>
-        <div class="ns-row"><span class="ns-name">One Thousand</span><span class="ns-val">1,000</span><span class="ns-num">10³</span></div>
-        <div class="ns-row"><span class="ns-name">Ten Thousand</span><span class="ns-val">10,000</span><span class="ns-num">10⁴</span></div>
-        <div class="ns-row"><span class="ns-name">One Hundred Thousand</span><span class="ns-val">1,00,000</span><span class="ns-num">10⁵</span></div>
-        <div class="ns-row"><span class="ns-name">One Million</span><span class="ns-val">1,000,000</span><span class="ns-num">10⁶</span></div>
-        <div class="ns-row"><span class="ns-name">Ten Million</span><span class="ns-val">10,000,000</span><span class="ns-num">10⁷</span></div>
-        <div class="ns-row"><span class="ns-name">One Billion</span><span class="ns-val">1,000,000,000</span><span class="ns-num">10⁹</span></div>
-        <div class="ns-row"><span class="ns-name">One Trillion</span><span class="ns-val">1,000,000,000,000</span><span class="ns-num">10¹²</span></div>
+   </section><!-- Introduction -->
+   <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="section-card p-8">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+        <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+       </div>
+       <h2 class="font-heading font-bold text-brand-900 text-lg">Understanding Large Numbers</h2>
       </div>
-      <div class="ns-card reveal reveal-delay-1">
-        <div class="ns-card-title">
-          🇮🇳 Indian System <span class="ns-tag indian">South Asian</span>
+      <div class="prose max-w-none text-gray-600 text-sm leading-relaxed space-y-4">
+       <p>Working with large numbers is a daily reality for finance professionals, economists, data analysts, and anyone tracking global markets. The challenge lies in the fact that different regions of the world use fundamentally different numbering systems to represent these values.</p>
+       <p>The <strong>international numbering system</strong> groups digits in sets of three — thousands, millions, billions, trillions. A billion represents 1,000,000,000 (10<sup>9</sup>). This system is standard across North America, Europe, and most of the world.</p>
+       <p>The <strong>Indian numbering system</strong>, on the other hand, groups the first three digits and then subsequent pairs — thousands, lakhs (1,00,000), crores (1,00,00,000). This system is deeply embedded in financial reporting, media, and everyday conversation across South Asia.</p>
+       <p>This is where <strong><a href="https://thesmartkeyrealty.com/billion-to-crore-conversion/" target="_blank" " class="text-brand-600 hover:text-brand-700 underline">billion to crore conversion</a></strong> becomes essential. Whether you're reading an international financial report stating a company is valued at 2.5 billion dollars, or an Indian market report expressing the same value as 250 crores, understanding the relationship between these systems is crucial for accurate interpretation.</p>
+       <p>The core relationship is straightforward: <strong>1 Billion = 100 Crores</strong>. This means 1 billion contains ten thousand lakhs, or equivalently, one hundred crore. Our converter tool handles all the complexity instantly, supporting conversions between billions, millions, crores, and lakhs in any direction.</p>
+      </div><!-- Visual: Number System Comparison -->
+      <div class="mt-8 p-5 rounded-xl bg-gradient-to-br from-brand-50 to-blue-50 border border-brand-100">
+       <h3 class="font-heading text-xs font-bold text-brand-700 mb-4 uppercase tracking-wider">Number Scale Visualization</h3>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="text-center p-3 rounded-lg bg-white/60">
+         <div class="font-heading text-2xl font-bold text-brand-600 counter" data-target="1000">
+          0
+         </div>
+         <div class="text-[10px] text-gray-500 mt-1">
+          1 Thousand
+         </div>
+         <div class="text-[9px] font-mono text-gray-400">
+          1,000
+         </div>
         </div>
-        <div class="ns-row"><span class="ns-name">One Hazar (Thousand)</span><span class="ns-val">1,000</span><span class="ns-num">10³</span></div>
-        <div class="ns-row"><span class="ns-name">Ten Hazar</span><span class="ns-val">10,000</span><span class="ns-num">10⁴</span></div>
-        <div class="ns-row"><span class="ns-name">One Lakh</span><span class="ns-val">1,00,000</span><span class="ns-num">10⁵</span></div>
-        <div class="ns-row"><span class="ns-name">Ten Lakh</span><span class="ns-val">10,00,000</span><span class="ns-num">10⁶</span></div>
-        <div class="ns-row"><span class="ns-name">One Crore</span><span class="ns-val">1,00,00,000</span><span class="ns-num">10⁷</span></div>
-        <div class="ns-row"><span class="ns-name">Ten Crore</span><span class="ns-val">10,00,00,000</span><span class="ns-num">10⁸</span></div>
-        <div class="ns-row"><span class="ns-name">One Arab (100 Crore)</span><span class="ns-val">1,00,00,00,000</span><span class="ns-num">10⁹</span></div>
+        <div class="text-center p-3 rounded-lg bg-white/60">
+         <div class="font-heading text-2xl font-bold text-brand-600 counter" data-target="100000">
+          0
+         </div>
+         <div class="text-[10px] text-gray-500 mt-1">
+          1 Lakh
+         </div>
+         <div class="text-[9px] font-mono text-gray-400">
+          1,00,000
+         </div>
+        </div>
+        <div class="text-center p-3 rounded-lg bg-white/60">
+         <div class="font-heading text-2xl font-bold text-brand-600 counter" data-target="10000000">
+          0
+         </div>
+         <div class="text-[10px] text-gray-500 mt-1">
+          1 Crore
+         </div>
+         <div class="text-[9px] font-mono text-gray-400">
+          1,00,00,000
+         </div>
+        </div>
+        <div class="text-center p-3 rounded-lg bg-white/60">
+         <div class="font-heading text-2xl font-bold text-brand-600 counter" data-target="1000000000">
+          0
+         </div>
+         <div class="text-[10px] text-gray-500 mt-1">
+          1 Billion
+         </div>
+         <div class="text-[9px] font-mono text-gray-400">
+          1,000,000,000
+         </div>
+        </div>
+       </div>
       </div>
+     </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== COMPARISON TABLE ===== -->
-<section id="comparison">
-  <div class="container">
-    <div class="section-label">Comparison</div>
-    <h2 class="section-title reveal">Complete Conversion Reference Table</h2>
-    <p class="section-desc reveal reveal-delay-1">A complete at-a-glance reference for all unit conversions between international and Indian number systems.</p>
-    <div class="comparison-wrap reveal">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Unit</th>
-            <th>Numeric Value</th>
-            <th>In Billion</th>
-            <th>In Million</th>
-            <th>In Crore</th>
-            <th>In Lakh</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1 Thousand</td><td class="mono">1,000</td><td class="mono">0.000001 B</td><td class="mono">0.001 M</td><td class="mono">0.0001 Cr</td><td class="mono">0.01 L</td></tr>
-          <tr><td>1 Lakh</td><td class="mono">1,00,000</td><td class="mono">0.0001 B</td><td class="mono">0.1 M</td><td class="mono">0.01 Cr</td><td class="mono">1 L</td></tr>
-          <tr><td>1 Million</td><td class="mono">10,00,000</td><td class="mono">0.001 B</td><td class="mono">1 M</td><td class="mono">0.1 Cr</td><td class="mono">10 L</td></tr>
-          <tr><td>1 Crore</td><td class="mono">1,00,00,000</td><td class="mono">0.01 B</td><td class="mono">10 M</td><td class="mono">1 Cr</td><td class="mono">100 L</td></tr>
-          <tr class="highlight-row"><td>⭐ 1 Billion</td><td class="mono">1,00,00,00,000</td><td class="mono">1 B</td><td class="mono">1,000 M</td><td class="mono">100 Cr</td><td class="mono">10,000 L</td></tr>
-          <tr><td>100 Crore</td><td class="mono">1,00,00,00,000</td><td class="mono">1 B</td><td class="mono">1,000 M</td><td class="mono">100 Cr</td><td class="mono">10,000 L</td></tr>
-          <tr><td>1 Trillion</td><td class="mono">10,00,00,00,00,000</td><td class="mono">1,000 B</td><td class="mono">10,00,000 M</td><td class="mono">1,00,000 Cr</td><td class="mono">1,000 L Cr</td></tr>
-        </tbody>
+   </section><!-- How It Works -->
+   <section id="how" class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-semibold mb-3">
+       <i data-lucide="lightbulb" class="w-3 h-3"></i> Simple Process
+      </div>
+      <h2 class="font-heading font-bold text-brand-900 text-2xl md:text-3xl">How Conversion Works</h2>
+     </div>
+     <div class="space-y-0">
+      <!-- Step 1 -->
+      <div class="step-line relative pl-14 pb-10 observe-fade">
+       <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white font-heading font-bold text-sm z-10">
+        1
+       </div>
+       <div class="section-card p-5">
+        <h3 class="font-heading font-bold text-brand-900 text-sm mb-2">Identify Your Value</h3>
+        <p class="text-gray-500 text-sm">Start with the number you want to convert. For example: <span class="font-mono font-bold text-brand-600">2.5 Billion</span></p>
+       </div>
+      </div><!-- Step 2 -->
+      <div class="step-line relative pl-14 pb-10 observe-fade">
+       <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white font-heading font-bold text-sm z-10">
+        2
+       </div>
+       <div class="section-card p-5">
+        <h3 class="font-heading font-bold text-brand-900 text-sm mb-2">Apply the Formula</h3>
+        <p class="text-gray-500 text-sm mb-3">Use the conversion multiplier based on your source and target units.</p>
+        <div class="p-4 rounded-lg bg-brand-50 border border-brand-100">
+         <div class="font-mono text-sm text-brand-700 space-y-1">
+          <div><span class="text-gray-400">Billion → Crore:</span> <strong>× 100</strong>
+          </div>
+          <div><span class="text-gray-400">Billion → Lakh:</span> <strong>× 10,000</strong>
+          </div>
+          <div><span class="text-gray-400">Million → Lakh:</span> <strong>× 10</strong>
+          </div>
+          <div><span class="text-gray-400">Million → Crore:</span> <strong>× 0.1</strong>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Step 3 -->
+      <div class="relative pl-14 pb-4 observe-fade">
+       <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-heading font-bold text-sm z-10">
+        ✓
+       </div>
+       <div class="section-card p-5 border-green-100">
+        <h3 class="font-heading font-bold text-brand-900 text-sm mb-2">Get Your Result</h3>
+        <p class="text-gray-500 text-sm">Example: <span class="font-mono">2.5 × 100 = </span><span class="font-mono font-bold text-green-600">250 Crore</span></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Guide: Global vs Indian -->
+   <section id="guide" class="py-12 px-4">
+    <div class="max-w-4xl mx-auto section-card p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+       <i data-lucide="globe" class="w-5 h-5 text-white"></i>
+      </div>
+      <h2 class="font-heading font-bold text-brand-900 text-lg">Global vs Indian Number Systems</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="p-5 rounded-xl bg-brand-50 border border-brand-100">
+       <h3 class="font-heading text-xs font-bold text-brand-700 mb-3 uppercase tracking-wider">International System</h3>
+       <div class="space-y-2 text-sm text-gray-600">
+        <div class="flex justify-between"><span>Thousand</span><span class="font-mono font-bold">1,000</span>
+        </div>
+        <div class="flex justify-between"><span>Million</span><span class="font-mono font-bold">1,000,000</span>
+        </div>
+        <div class="flex justify-between"><span>Billion</span><span class="font-mono font-bold">1,000,000,000</span>
+        </div>
+        <div class="flex justify-between"><span>Trillion</span><span class="font-mono font-bold">1,000,000,000,000</span>
+        </div>
+       </div>
+       <p class="text-[10px] text-gray-400 mt-3">Groups of 3 digits: thousand → million → billion</p>
+      </div>
+      <div class="p-5 rounded-xl bg-orange-50 border border-orange-100">
+       <h3 class="font-heading text-xs font-bold text-orange-700 mb-3 uppercase tracking-wider">Indian System</h3>
+       <div class="space-y-2 text-sm text-gray-600">
+        <div class="flex justify-between"><span>Hazaar (Thousand)</span><span class="font-mono font-bold">1,000</span>
+        </div>
+        <div class="flex justify-between"><span>Lakh</span><span class="font-mono font-bold">1,00,000</span>
+        </div>
+        <div class="flex justify-between"><span>Crore</span><span class="font-mono font-bold">1,00,00,000</span>
+        </div>
+        <div class="flex justify-between"><span>Arab</span><span class="font-mono font-bold">1,00,00,00,000</span>
+        </div>
+       </div>
+       <p class="text-[10px] text-gray-400 mt-3">First 3, then groups of 2: thousand → lakh → crore</p>
+      </div>
+     </div><!-- Visual infographic: digit grouping -->
+     <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+      <h3 class="font-heading text-xs font-bold text-gray-500 mb-4 uppercase tracking-wider">How 1 Billion Looks in Both Systems</h3>
+      <div class="space-y-3">
+       <div>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider">International</span>
+        <div class="font-mono text-lg font-bold text-brand-600 tracking-wider">
+         <span class="bg-brand-100 px-1 rounded">1</span>,<span class="bg-blue-100 px-1 rounded">000</span>,<span class="bg-blue-100 px-1 rounded">000</span>,<span class="bg-blue-100 px-1 rounded">000</span>
+        </div>
+       </div>
+       <div>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider">Indian</span>
+        <div class="font-mono text-lg font-bold text-orange-600 tracking-wider">
+         <span class="bg-orange-100 px-1 rounded">1</span>,<span class="bg-orange-100 px-1 rounded">00</span>,<span class="bg-orange-100 px-1 rounded">00</span>,<span class="bg-orange-100 px-1 rounded">00</span>,<span class="bg-amber-100 px-1 rounded">000</span>
+        </div>
+       </div>
+      </div>
+      <p class="text-xs text-gray-400 mt-3">Notice how Indian grouping uses pairs after the first thousand</p>
+     </div>
+     <div class="mt-6 text-sm text-gray-600 leading-relaxed">
+      <p>The Indian numbering system has deep historical roots, originating from the ancient Vedic mathematics tradition. While both systems share the same base-10 structure, their grouping conventions differ. Understanding this is vital when reading financial reports, as a company's "$2.3B valuation" translates to "₹23,000 crore" (at ₹100/$ for simplicity).</p>
+     </div>
+    </div>
+   </section><!-- Use Cases -->
+   <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-8">
+      <h2 class="font-heading font-bold text-brand-900 text-2xl">Who Uses This?</h2>
+      <p class="text-gray-400 text-sm mt-2">Real-world applications across industries</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-4">
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Finance &amp; Banking</h3>
+       <p class="text-xs text-gray-500">Converting FDI figures, GDP reports, and investment values between global and Indian formats.</p>
+      </div>
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Stock Market</h3>
+       <p class="text-xs text-gray-500">Translating market cap figures from international sources for Indian market analysis and vice versa.</p>
+      </div>
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="briefcase" class="w-6 h-6 text-blue-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Business Reports</h3>
+       <p class="text-xs text-gray-500">Converting revenue figures for cross-border reports and international stakeholder presentations.</p>
+      </div>
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="graduation-cap" class="w-6 h-6 text-amber-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Education</h3>
+       <p class="text-xs text-gray-500">Helping students understand large number conversions for mathematics and commerce studies.</p>
+      </div>
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-rose-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="database" class="w-6 h-6 text-rose-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Data Analysis</h3>
+       <p class="text-xs text-gray-500">Converting population statistics, data volumes, and large dataset numbers between formats.</p>
+      </div>
+      <div class="section-card p-5 text-center observe-fade">
+       <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="newspaper" class="w-6 h-6 text-teal-600"></i>
+       </div>
+       <h3 class="font-heading font-bold text-brand-900 text-sm mb-1">Journalism</h3>
+       <p class="text-xs text-gray-500">Accurately converting figures in international news stories for regional audiences.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Comparison Table -->
+   <section id="compare" class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-8">
+      <h2 class="font-heading font-bold text-brand-900 text-2xl">Quick Comparison</h2>
+      <p class="text-gray-400 text-sm mt-2">See how values translate across numbering systems</p>
+     </div>
+     <div class="overflow-x-auto">
+      <table class="w-full">
+       <thead>
+        <tr>
+         <th class="text-left px-4 py-3 text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Value</th>
+         <th class="text-right px-4 py-3 text-[10px] uppercase tracking-wider text-brand-500 font-semibold">Billion</th>
+         <th class="text-right px-4 py-3 text-[10px] uppercase tracking-wider text-purple-500 font-semibold">Million</th>
+         <th class="text-right px-4 py-3 text-[10px] uppercase tracking-wider text-orange-500 font-semibold">Crore</th>
+         <th class="text-right px-4 py-3 text-[10px] uppercase tracking-wider text-teal-500 font-semibold">Lakh</th>
+        </tr>
+       </thead>
+       <tbody id="compTable"></tbody>
       </table>
+     </div>
     </div>
+   </section><!-- FAQ -->
+   <section id="faq" class="py-12 px-4">
+    <div class="max-w-3xl mx-auto">
+     <div class="text-center mb-8">
+      <h2 class="font-heading font-bold text-brand-900 text-2xl">Frequently Asked Questions</h2>
+     </div>
+     <div id="faqList" class="space-y-3"></div>
+    </div>
+   </section><!-- About Me Section -->
+   <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto section-card p-8">
+     <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center">
+       <i data-lucide="user" class="w-5 h-5 text-white"></i>
+      </div>
+      <h2 id="aboutTitle" class="font-heading font-bold text-brand-900 text-lg">About Me</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8 items-center">
+      <div class="md:col-span-2">
+       <p id="aboutDesc" class="text-gray-600 text-sm leading-relaxed mb-4">Hi, I'm John Meth — a dedicated financial analyst and number systems specialist with over a decade of experience helping businesses and professionals bridge the gap between international and Indian financial systems. I created BillionCroreNum to simplify complex number conversions and empower people to work confidently across different numbering systems.</p>
+       <p class="text-gray-600 text-sm leading-relaxed mb-4">My passion lies in making financial literacy accessible to everyone, whether you're a seasoned investor analyzing global markets or a student learning about number systems. Through this tool and my work, I aim to eliminate confusion around large number conversions and help you make informed decisions with clarity and confidence.</p>
+       <div class="flex gap-3 mt-6">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition-colors"> <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn </a> <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-xs font-semibold hover:bg-gray-200 transition-colors"> <i data-lucide="mail" class="w-4 h-4"></i> Contact </a>
+       </div>
+      </div>
+      <div class="md:col-span-1 flex justify-center">
+       <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-brand-200 shadow-lg">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop" alt="John Meth" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97066, #fbd5d0)'; this.alt='John Meth Profile';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-4 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="flex items-center justify-center gap-2 mb-3">
+      <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+       <span class="text-white font-heading text-[8px] font-bold">CN</span>
+      </div><span class="font-heading font-bold text-xs text-brand-900">ConvertNexa.com</span>
+     </div>
+     <p class="text-xs text-gray-400">Free, fast, and accurate number system converter. No data collected. No ads.</p>
+    </div>
+   </footer>
   </div>
-</section>
-
-<!-- ===== USE CASES ===== -->
-<section id="use-cases">
-  <div class="container">
-    <div class="section-label">Applications</div>
-    <h2 class="section-title reveal">Where This Converter Is Used</h2>
-    <p class="section-desc reveal reveal-delay-1">From stock markets to budget planning — large number conversion is a critical skill across many professional domains.</p>
-    <div class="use-cases-grid">
-      <div class="use-case-card reveal">
-        <div class="use-case-icon">📈</div>
-        <div class="use-case-title">Stock Market & Trading</div>
-        <div class="use-case-desc">NSE/BSE reports market cap in Crores while global indices use Billions. Convert instantly while analyzing Indian vs foreign stocks and ETFs.</div>
-      </div>
-      <div class="use-case-card reveal reveal-delay-1">
-        <div class="use-case-icon">🏦</div>
-        <div class="use-case-title">Finance & Banking</div>
-        <div class="use-case-desc">Banks, NBFCs, and financial institutions often report earnings in Crores for domestic reports and Billions for international disclosures.</div>
-      </div>
-      <div class="use-case-card reveal reveal-delay-2">
-        <div class="use-case-icon">📊</div>
-        <div class="use-case-title">Business Reports</div>
-        <div class="use-case-desc">Annual reports of Indian companies list revenue in Crores. Translate to Billion equivalents for global investor communication and benchmarking.</div>
-      </div>
-      <div class="use-case-card reveal">
-        <div class="use-case-icon">🎓</div>
-        <div class="use-case-title">Education & Research</div>
-        <div class="use-case-desc">Economics students and researchers regularly convert between systems when comparing GDP data, national debt figures, and global statistics.</div>
-      </div>
-      <div class="use-case-card reveal reveal-delay-1">
-        <div class="use-case-icon">🌐</div>
-        <div class="use-case-title">International Trade</div>
-        <div class="use-case-desc">Import/export values, trade balances, and foreign investment figures span both number systems. Quick conversion prevents costly misinterpretations.</div>
-      </div>
-      <div class="use-case-card reveal reveal-delay-2">
-        <div class="use-case-icon">💻</div>
-        <div class="use-case-title">Data Analysis & BI</div>
-        <div class="use-case-desc">Data analysts working with Indian and international datasets need to normalize units before visualization, reporting, or model training.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ADVANCED PANEL ===== -->
-<section id="advanced">
-  <div class="container">
-    <div class="section-label">Advanced Tools</div>
-    <h2 class="section-title reveal">Advanced Converter Features</h2>
-    <p class="section-desc reveal reveal-delay-1">Bulk conversions, history tracking, and powerful utilities for power users and professionals.</p>
-    <div class="adv-grid">
-      <!-- Bulk Converter -->
-      <div class="panel-card reveal">
-        <div class="panel-header">
-          <span class="panel-header-title">📝 Bulk Converter</span>
-          <div style="display:flex;gap:8px;align-items:center">
-            <select class="bulk-unit-select" id="bulkFrom">
-              <option value="billion">Billion</option>
-              <option value="million">Million</option>
-              <option value="crore">Crore</option>
-              <option value="lakh">Lakh</option>
-            </select>
-            <span style="color:var(--text3);font-size:0.85rem">→</span>
-            <select class="bulk-unit-select" id="bulkTo">
-              <option value="crore" selected>Crore</option>
-              <option value="billion">Billion</option>
-              <option value="million">Million</option>
-              <option value="lakh">Lakh</option>
-            </select>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="input-label" style="margin-bottom:8px">Enter numbers (one per line)</div>
-          <textarea class="bulk-textarea" id="bulkInput" placeholder="1&#10;5&#10;10&#10;25.5&#10;100" oninput="bulkConvert()"></textarea>
-          <div class="bulk-opts">
-            <button class="btn btn-ghost" onclick="bulkConvert()" style="font-size:0.8rem">⟳ Convert All</button>
-            <button class="btn btn-ghost" onclick="copyBulk()" style="font-size:0.8rem">📋 Copy Results</button>
-            <button class="btn btn-danger" onclick="document.getElementById('bulkInput').value='';document.getElementById('bulkResults').textContent=''" style="font-size:0.8rem">✕ Clear</button>
-          </div>
-          <div class="input-label" style="margin-bottom:8px">Results</div>
-          <div class="bulk-results" id="bulkResults">Results will appear here...</div>
-        </div>
-      </div>
-
-      <!-- History -->
-      <div class="panel-card reveal reveal-delay-1">
-        <div class="panel-header">
-          <span class="panel-header-title">🕑 Calculation History</span>
-          <button class="btn btn-danger" onclick="clearHistory()" style="font-size:0.75rem;padding:5px 10px">Clear</button>
-        </div>
-        <div class="panel-body" style="padding:16px">
-          <div class="history-list" id="historyList">
-            <div class="empty-hist">
-              <div class="empty-hist-icon">📜</div>
-              <div>No conversions yet</div>
-              <div style="font-size:0.8rem;margin-top:4px;color:var(--text3)">Use the converter above to see history</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section id="faq">
-  <div class="container">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title reveal">Frequently Asked Questions</h2>
-    <p class="section-desc reveal reveal-delay-1">Everything you need to know about billion to crore conversion and large number systems.</p>
-    <div class="faq-grid" style="margin-top:48px">
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How many crores is 1 billion?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">1 Billion equals exactly 100 Crore. This is because 1 Billion = 1,000,000,000 and 1 Crore = 10,000,000. So 1,000,000,000 ÷ 10,000,000 = 100 Crore. This is the most common conversion needed in Indian financial contexts.</div>
-      </div>
-      <div class="faq-item reveal reveal-delay-1">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How many millions is 1 crore?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">1 Crore equals 10 Million. Since 1 Crore = 1,00,00,000 (10 million) in the Indian system, and 1 Million = 10,00,000 (1 million), dividing gives us 10 Million per Crore.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What is the difference between Billion and Arab?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">In the Indian numbering system, 100 Crore is called "Arab" or "100 Crore." This is exactly equal to 1 Billion in the international system. So 1 Billion = 1 Arab = 100 Crore.</div>
-      </div>
-      <div class="faq-item reveal reveal-delay-1">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How many lakhs is 1 billion?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">1 Billion = 10,000 Lakh. Since 1 Lakh = 1,00,000 and 1 Billion = 1,00,00,00,000, dividing gives 10,000 Lakh. So if a company earns ₹1 Billion, it earned ₹10,000 Lakh.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Why do India and Western countries use different number systems?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">The Indian numbering system evolved separately and groups digits differently after the first three digits. After 999, the Indian system uses groups of two (Lakh = 1,00,000; Crore = 1,00,00,000), while the international system always groups in threes (Million = 1,000,000; Billion = 1,000,000,000).</div>
-      </div>
-      <div class="faq-item reveal reveal-delay-1">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How do I convert 5.7 Billion to Crore?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">Multiply 5.7 × 100 = 570 Crore. The formula is: Value in Crore = Value in Billion × 100. So 5.7 Billion = 570 Crore = 5,70,00,00,000. You can also use our converter above for instant results.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Is 1 trillion equal to how many crores?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">1 Trillion = 1,00,000 Crore (One Lakh Crore). Since 1 Trillion = 1,000 Billion and 1 Billion = 100 Crore, multiplying gives 1,000 × 100 = 1,00,000 Crore. The Indian government often refers to large budgets in "Lakh Crore."</div>
-      </div>
-      <div class="faq-item reveal reveal-delay-1">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Does the converter support decimal values?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">Yes! Our converter fully supports decimal inputs. For example, entering 2.5 Billion will give you 250 Crore. You can enter any decimal number and get precise results up to 6 decimal places in the output.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta-section">
-  <div class="container">
-    <h2 class="reveal">Start Converting Numbers Instantly</h2>
-    <p class="reveal reveal-delay-1">Join thousands of finance professionals, students, and analysts who rely on our converter for accurate large number conversions.</p>
-    <div class="cta-btns reveal reveal-delay-2">
-      <button class="btn btn-white" onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})">🚀 Use Converter Now</button>
-      <button class="btn btn-outline-white" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">📖 Read the Guide</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="logo">₿ BtoC Converter</div>
-        <p>The most accurate and feature-rich <i></i><b><a href="https://thesmartkeyrealty.com/billion-to-crore-conversion/">billion to crore conversion</a></b></i>, built for finance professionals and learners worldwide.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Tools</h4>
-        <ul>
-          <li><a href="#converter">Billion → Crore</a></li>
-          <li><a href="#converter">Crore → Billion</a></li>
-          <li><a href="#advanced">Bulk Converter</a></li>
-          <li><a href="#converter">Million → Lakh</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#guide">Number Systems</a></li>
-          <li><a href="#comparison">Comparison Table</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Use Cases</h4>
-        <ul>
-          <li><a href="#use-cases">Finance</a></li>
-          <li><a href="#use-cases">Stock Market</a></li>
-          <li><a href="#use-cases">Education</a></li>
-          <li><a href="#use-cases">Data Analysis</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 BtoC Converter. Built for accuracy and speed.</p>
-      <p>1 Billion = 100 Crore | 1 Million = 10 Lakh | 1 Trillion = 1,00,000 Crore</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-// ===== UNIT VALUES (in ones) =====
-const UNITS = {
-  thousand: 1e3,
-  lakh: 1e5,
-  million: 1e6,
-  crore: 1e7,
-  billion: 1e9,
-  trillion: 1e12
-};
-const UNIT_LABELS = {
-  thousand: 'Thousand', lakh: 'Lakh', million: 'Million',
-  crore: 'Crore', billion: 'Billion', trillion: 'Trillion'
+  <script>
+// ===== CONFIG & SDK =====
+const defaultConfig = {
+  hero_title: 'Billion to Crore\nConverter',
+  hero_subtitle: 'Convert large numbers between international and Indian numbering systems — instantly, accurately, beautifully.',
+  about_title: 'About Me',
+  about_desc: 'Hi, I\'m John Meth — a dedicated financial analyst and number systems specialist with over a decade of experience helping businesses and professionals bridge the gap between international and Indian financial systems.',
+  background_color: '#fffbfa',
+  surface_color: '#ffffff',
+  text_color: '#3e1c17',
+  primary_action_color: '#f04438',
+  secondary_action_color: '#f97066',
+  font_family: 'DM Sans',
+  font_size: 14
 };
 
-// ===== STATE =====
-let history = [];
-let currentMode = 'simple';
-let lastResult = null;
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async (config) => {
+    const c = key => config[key] || defaultConfig[key];
+    document.getElementById('heroTitle').innerHTML = (c('hero_title')).replace(/\n/,'<br>');
+    document.getElementById('heroSubtitle').textContent = c('hero_subtitle');
+    document.getElementById('aboutTitle').textContent = c('about_title');
+    document.getElementById('aboutDesc').textContent = c('about_desc');
 
-// ===== CALCULATE =====
-function calculate() {
-  const val = parseFloat(document.getElementById('inputVal').value);
-  const from = document.getElementById('fromUnit').value;
-  const to = document.getElementById('toUnit').value;
-  const resultEl = document.getElementById('resultVal');
-  const labelEl = document.getElementById('resultLabel');
-  const formattedEl = document.getElementById('resultFormatted');
+    const bg = c('background_color');
+    const surface = c('surface_color');
+    const text = c('text_color');
+    const primary = c('primary_action_color');
+    const secondary = c('secondary_action_color');
+    const font = c('font_family');
+    const size = c('font_size');
 
-  if (isNaN(val) || val === '') {
-    resultEl.textContent = '—';
-    labelEl.textContent = 'Enter a value above to convert';
-    formattedEl.textContent = '';
-    return;
-  }
+    document.body.style.background = bg;
+    document.body.style.color = text;
+    document.body.style.fontFamily = `${font}, 'DM Sans', sans-serif`;
+    document.body.style.fontSize = size + 'px';
 
-  const raw = val * UNITS[from];
-  const result = raw / UNITS[to];
-  lastResult = { val, from, to, result };
+    document.querySelectorAll('.section-card').forEach(el => el.style.background = surface);
+    document.querySelectorAll('.text-brand-900').forEach(el => el.style.color = text);
+    document.querySelectorAll('.bg-brand-600').forEach(el => { el.style.background = primary; });
+    document.querySelectorAll('.text-brand-600').forEach(el => el.style.color = primary);
+    document.querySelectorAll('.text-brand-500').forEach(el => el.style.color = secondary);
+  },
+  mapToCapabilities: (config) => ({
+    recolorables: [
+      { get:()=>config.background_color||defaultConfig.background_color, set:v=>{config.background_color=v;window.elementSdk.setConfig({background_color:v})} },
+      { get:()=>config.surface_color||defaultConfig.surface_color, set:v=>{config.surface_color=v;window.elementSdk.setConfig({surface_color:v})} },
+      { get:()=>config.text_color||defaultConfig.text_color, set:v=>{config.text_color=v;window.elementSdk.setConfig({text_color:v})} },
+      { get:()=>config.primary_action_color||defaultConfig.primary_action_color, set:v=>{config.primary_action_color=v;window.elementSdk.setConfig({primary_action_color:v})} },
+      { get:()=>config.secondary_action_color||defaultConfig.secondary_action_color, set:v=>{config.secondary_action_color=v;window.elementSdk.setConfig({secondary_action_color:v})} },
+    ],
+    borderables: [],
+    fontEditable: { get:()=>config.font_family||defaultConfig.font_family, set:v=>{config.font_family=v;window.elementSdk.setConfig({font_family:v})} },
+    fontSizeable: { get:()=>config.font_size||defaultConfig.font_size, set:v=>{config.font_size=v;window.elementSdk.setConfig({font_size:v})} },
+  }),
+  mapToEditPanelValues: (config) => new Map([
+    ['hero_title', config.hero_title || defaultConfig.hero_title],
+    ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+    ['about_title', config.about_title || defaultConfig.about_title],
+    ['about_desc', config.about_desc || defaultConfig.about_desc],
+  ])
+});
 
-  // Animate
-  resultEl.style.transform = 'scale(0.85)';
-  resultEl.style.opacity = '0.5';
-  setTimeout(() => {
-    resultEl.textContent = formatNumber(result);
-    resultEl.style.transform = 'scale(1)';
-    resultEl.style.opacity = '1';
-  }, 120);
+// ===== CONVERSION ENGINE =====
+const FACTORS = { billion:1e9, million:1e6, crore:1e7, lakh:1e5 };
+function convert(val, from, to) { return val * FACTORS[from] / FACTORS[to]; }
+function formatNum(n) {
+  if(n===0) return '0';
+  if(Math.abs(n)>=1e6) return n.toLocaleString('en-US',{maximumFractionDigits:2});
+  if(Math.abs(n)<0.001) return n.toExponential(4);
+  return n.toLocaleString('en-US',{maximumFractionDigits:6});
+}
 
-  labelEl.textContent = `${formatNumber(val)} ${UNIT_LABELS[from]} = ${formatNumber(result)} ${UNIT_LABELS[to]}`;
-  formattedEl.textContent = `Raw: ${raw.toLocaleString('en-IN')}`;
+const history = [];
+const inputEl = document.getElementById('inputVal');
+const fromEl = document.getElementById('fromUnit');
+const toEl = document.getElementById('toUnit');
+const resultText = document.getElementById('resultText');
+const resultDisplay = document.getElementById('resultDisplay');
+const formulaBar = document.getElementById('formulaBar');
+const formulaText = document.getElementById('formulaText');
 
-  // Add to history
+function doConvert() {
+  const raw = inputEl.value.replace(/,/g,'').trim();
+  if(!raw || isNaN(Number(raw))) { resultText.textContent='—'; formulaBar.classList.add('hidden'); return; }
+  const val = Number(raw);
+  const from = fromEl.value, to = toEl.value;
+  const result = convert(val, from, to);
+  resultText.textContent = formatNum(result) + ' ' + to.charAt(0).toUpperCase()+to.slice(1);
+  resultDisplay.classList.add('result-flash');
+  setTimeout(()=>resultDisplay.classList.remove('result-flash'),500);
+
+  const factor = FACTORS[from]/FACTORS[to];
+  formulaText.textContent = `${val} ${from} × ${factor} = ${formatNum(result)} ${to}`;
+  formulaBar.classList.remove('hidden');
+
   addHistory(val, from, result, to);
-
-  // Show all conversions if advanced
-  if (currentMode === 'advanced') {
-    showAllConversions(raw);
-  }
 }
 
-// ===== FORMAT NUMBER =====
-function formatNumber(n) {
-  if (Math.abs(n) >= 1e12) return (n / 1e12).toFixed(4) + 'T';
-  if (Math.abs(n) >= 1e9) return (n / 1e9).toFixed(4);
-  if (n === Math.floor(n)) return n.toLocaleString('en-IN');
-  return parseFloat(n.toFixed(6)).toString();
+inputEl.addEventListener('input', doConvert);
+fromEl.addEventListener('change', doConvert);
+toEl.addEventListener('change', doConvert);
+
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const f=fromEl.value, t=toEl.value;
+  fromEl.value=t; toEl.value=f;
+  doConvert();
+});
+
+function setPreset(v) { inputEl.value=v; fromEl.value='billion'; toEl.value='crore'; doConvert(); }
+function resetConverter() { inputEl.value=''; resultText.textContent='—'; formulaBar.classList.add('hidden'); }
+
+function copyResult() {
+  const t = resultText.textContent;
+  if(t==='—') return;
+  navigator.clipboard.writeText(t).then(()=>{
+    const toast=document.getElementById('copyToast');
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),2000);
+  });
 }
 
-// ===== SHOW ALL CONVERSIONS =====
-function showAllConversions(raw) {
-  const list = document.getElementById('allConvList');
-  list.innerHTML = Object.entries(UNITS).map(([key, val]) => {
-    const res = raw / val;
-    return `<div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);font-size:0.85rem">
-      <span style="color:var(--text2)">${UNIT_LABELS[key]}</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent)">${parseFloat(res.toFixed(6)).toLocaleString()}</span>
+// ===== HISTORY =====
+function addHistory(val, from, result, to) {
+  history.unshift({val,from,result,to,time:new Date()});
+  if(history.length>10) history.pop();
+  renderHistory();
+}
+function renderHistory() {
+  const panel = document.getElementById('historyPanel');
+  const list = document.getElementById('historyList');
+  if(!history.length){panel.classList.add('hidden');return;}
+  panel.classList.remove('hidden');
+  list.innerHTML = history.map((h,i)=>`
+    <div class="history-item flex items-center justify-between px-4 py-2.5 rounded-lg bg-white border border-gray-100 text-xs" style="animation-delay:${i*50}ms">
+      <span class="font-mono text-gray-600">${formatNum(h.val)} ${h.from}</span>
+      <i data-lucide="arrow-right" class="w-3 h-3 text-gray-300"></i>
+      <span class="font-mono font-bold text-brand-600">${formatNum(h.result)} ${h.to}</span>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+function clearHistory() { history.length=0; renderHistory(); }
+
+// ===== BULK CONVERT =====
+function bulkConvert() {
+  const lines = document.getElementById('bulkInput').value.split('\n').filter(l=>l.trim());
+  const from=document.getElementById('bulkFrom').value, to=document.getElementById('bulkTo').value;
+  const container = document.getElementById('bulkResults');
+  if(!lines.length){container.classList.add('hidden');return;}
+  container.classList.remove('hidden');
+  container.innerHTML = lines.map((line,i)=>{
+    const n=Number(line.replace(/,/g,'').trim());
+    if(isNaN(n)) return `<div class="px-3 py-2 rounded-lg bg-red-50 text-red-500 text-xs font-mono">Invalid: ${line}</div>`;
+    const r=convert(n,from,to);
+    return `<div class="flex justify-between px-3 py-2 rounded-lg bg-gray-50 text-xs slide-in" style="animation-delay:${i*60}ms">
+      <span class="font-mono text-gray-600">${formatNum(n)} ${from}</span>
+      <span class="font-mono font-bold text-brand-600">${formatNum(r)} ${to}</span>
     </div>`;
   }).join('');
 }
 
-// ===== SET MODE =====
-function setMode(mode) {
-  currentMode = mode;
-  document.getElementById('modeSimple').classList.toggle('active', mode === 'simple');
-  document.getElementById('modeAdvanced').classList.toggle('active', mode === 'advanced');
-  const allConv = document.getElementById('allConversions');
-  allConv.style.display = mode === 'advanced' ? 'block' : 'none';
-  if (mode === 'advanced') {
-    const val = parseFloat(document.getElementById('inputVal').value);
-    const from = document.getElementById('fromUnit').value;
-    if (!isNaN(val)) showAllConversions(val * UNITS[from]);
-  }
-}
-
-// ===== SWAP =====
-function swapUnits() {
-  const from = document.getElementById('fromUnit');
-  const to = document.getElementById('toUnit');
-  const tmp = from.value;
-  from.value = to.value;
-  to.value = tmp;
-  calculate();
-}
-
-// ===== PRESET =====
-function setPreset(val) {
-  document.getElementById('inputVal').value = val;
-  document.getElementById('fromUnit').value = 'billion';
-  document.getElementById('toUnit').value = 'crore';
-  calculate();
-}
-
-// ===== COPY =====
-function copyResult() {
-  if (!lastResult) { showToast('⚠️ Nothing to copy yet'); return; }
-  const text = `${lastResult.val} ${UNIT_LABELS[lastResult.from]} = ${formatNumber(lastResult.result)} ${UNIT_LABELS[lastResult.to]}`;
-  navigator.clipboard.writeText(text).then(() => showToast('✅ Copied to clipboard!'));
-}
-
-// ===== SHARE =====
-function shareResult() {
-  if (!lastResult) { showToast('⚠️ Convert something first'); return; }
-  const text = `${lastResult.val} ${UNIT_LABELS[lastResult.from]} = ${formatNumber(lastResult.result)} ${UNIT_LABELS[lastResult.to]} | via BtoC Converter`;
-  if (navigator.share) {
-    navigator.share({ title: 'Conversion Result', text }).catch(() => {});
-  } else {
-    navigator.clipboard.writeText(text).then(() => showToast('🔗 Link copied!'));
-  }
-}
-
-// ===== RESET =====
-function resetConverter() {
-  document.getElementById('inputVal').value = '';
-  document.getElementById('fromUnit').value = 'billion';
-  document.getElementById('toUnit').value = 'crore';
-  document.getElementById('resultVal').textContent = '—';
-  document.getElementById('resultLabel').textContent = 'Enter a value above to convert';
-  document.getElementById('resultFormatted').textContent = '';
-  lastResult = null;
-  showToast('↺ Converter reset');
-}
-
 // ===== VOICE INPUT =====
-function startVoice() {
-  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    showToast('🎤 Voice not supported in this browser'); return;
-  }
-  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const rec = new Rec();
-  const btn = document.getElementById('voiceBtn');
-  rec.lang = 'en-IN'; rec.interimResults = false;
-  btn.textContent = '🔴 Listening...';
-  btn.classList.add('recording');
-  rec.onresult = (e) => {
-    const raw = e.results[0][0].transcript;
-    const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
-    if (!isNaN(num)) {
-      document.getElementById('inputVal').value = num;
-      calculate();
-      showToast(`🎤 Heard: ${raw}`);
-    } else { showToast('🎤 Could not detect number'); }
-    btn.textContent = '🎤 Voice'; btn.classList.remove('recording');
-  };
-  rec.onerror = () => { btn.textContent = '🎤 Voice'; btn.classList.remove('recording'); showToast('🎤 Voice error'); };
-  rec.onend = () => { btn.textContent = '🎤 Voice'; btn.classList.remove('recording'); };
-  rec.start();
-}
-
-// ===== HISTORY =====
-function addHistory(from, fromUnit, to, toUnit) {
-  if (isNaN(from)) return;
-  history.unshift({ from, fromUnit, to, toUnit, time: new Date() });
-  if (history.length > 20) history.pop();
-  renderHistory();
-}
-
-function renderHistory() {
-  const list = document.getElementById('historyList');
-  if (history.length === 0) {
-    list.innerHTML = '<div class="empty-hist"><div class="empty-hist-icon">📜</div><div>No conversions yet</div></div>';
+document.getElementById('voiceBtn').addEventListener('click', ()=>{
+  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)){
+    const btn=document.getElementById('voiceBtn');
+    btn.innerHTML='<i data-lucide="mic-off" class="w-3.5 h-3.5"></i> Not supported';
+    lucide.createIcons();
     return;
   }
-  list.innerHTML = history.slice(0, 12).map((h, i) => `
-    <div class="history-item" style="animation-delay:${i * 0.04}s">
-      <div>
-        <span class="hist-from">${h.from} ${UNIT_LABELS[h.fromUnit]}</span>
-        <span class="hist-arrow"> → </span>
-        <span class="hist-to">${formatNumber(h.to)} ${UNIT_LABELS[h.toUnit]}</span>
-      </div>
-      <span class="hist-time">${h.time.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span>
-    </div>
-  `).join('');
-}
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SR();
+  rec.lang='en-US'; rec.continuous=false;
+  const btn=document.getElementById('voiceBtn');
+  btn.classList.add('bg-red-100','text-red-600');
+  btn.classList.remove('bg-gray-100','text-gray-600');
+  rec.onresult=e=>{
+    const t=e.results[0][0].transcript;
+    const nums=t.match(/[\d.]+/);
+    if(nums) { inputEl.value=nums[0]; doConvert(); }
+    btn.classList.remove('bg-red-100','text-red-600');
+    btn.classList.add('bg-gray-100','text-gray-600');
+  };
+  rec.onerror=()=>{
+    btn.classList.remove('bg-red-100','text-red-600');
+    btn.classList.add('bg-gray-100','text-gray-600');
+  };
+  rec.start();
+});
 
-function clearHistory() {
-  history = [];
-  renderHistory();
-  showToast('🗑️ History cleared');
-}
+// ===== DARK MODE =====
+document.getElementById('darkToggle').addEventListener('click', ()=>{
+  document.documentElement.classList.toggle('dark-mode');
+  const isDark = document.documentElement.classList.contains('dark-mode');
+  document.getElementById('darkIcon').setAttribute('data-lucide', isDark?'sun':'moon');
+  lucide.createIcons();
+});
 
-// ===== BULK =====
-function bulkConvert() {
-  const lines = document.getElementById('bulkInput').value.split('\n').filter(l => l.trim());
-  const from = document.getElementById('bulkFrom').value;
-  const to = document.getElementById('bulkTo').value;
-  const results = lines.map(line => {
-    const n = parseFloat(line.trim());
-    if (isNaN(n)) return `${line.trim()} → invalid`;
-    const res = (n * UNITS[from]) / UNITS[to];
-    return `${n} ${UNIT_LABELS[from]} = ${formatNumber(res)} ${UNIT_LABELS[to]}`;
-  });
-  document.getElementById('bulkResults').textContent = results.join('\n') || 'Enter numbers above...';
-}
-
-function copyBulk() {
-  const text = document.getElementById('bulkResults').textContent;
-  if (!text || text === 'Results will appear here...') { showToast('⚠️ Nothing to copy'); return; }
-  navigator.clipboard.writeText(text).then(() => showToast('✅ Bulk results copied!'));
-}
-
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
+// ===== COMPARISON TABLE =====
+(function(){
+  const vals=[0.001,0.01,0.1,0.5,1,2.5,5,10,50,100];
+  const tbody=document.getElementById('compTable');
+  tbody.innerHTML=vals.map((b,i)=>{
+    const m=b*1000, c=b*100, l=b*10000;
+    return `<tr class="border-t border-gray-50">
+      <td class="px-4 py-3 text-xs text-gray-400">#${i+1}</td>
+      <td class="text-right px-4 py-3 font-mono text-sm font-bold text-brand-600">${formatNum(b)}</td>
+      <td class="text-right px-4 py-3 font-mono text-sm text-purple-600">${formatNum(m)}</td>
+      <td class="text-right px-4 py-3 font-mono text-sm text-orange-600">${formatNum(c)}</td>
+      <td class="text-right px-4 py-3 font-mono text-sm text-teal-600">${formatNum(l)}</td>
+    </tr>`;
+  }).join('');
+})();
 
 // ===== FAQ =====
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
+const faqs=[
+  {q:'How many crores is 1 billion?',a:'1 billion equals 100 crores. The conversion formula is: Crores = Billions × 100. So 1 billion (1,000,000,000) divided by 1 crore (10,000,000) = 100.'},
+  {q:'What is the difference between billion and crore?',a:'Billion is part of the international numbering system (1 billion = 1,000,000,000), while crore is part of the Indian numbering system (1 crore = 10,000,000). They represent different scales of grouping the same base-10 numbers.'},
+  {q:'How to convert crore to billion?',a:'Divide the number of crores by 100. For example, 500 crores ÷ 100 = 5 billion. The formula is: Billions = Crores ÷ 100.'},
+  {q:'How many lakhs make 1 billion?',a:'1 billion = 10,000 lakhs. Since 1 lakh = 100,000, we get 1,000,000,000 ÷ 100,000 = 10,000 lakhs.'},
+  {q:'Why does India use crores instead of billions?',a:'The Indian numbering system has historical roots in Vedic mathematics and has been used for thousands of years. It groups numbers differently — first three digits, then pairs — which reflects cultural counting traditions. Both systems are mathematically equivalent.'},
+  {q:'Is this tool accurate for financial calculations?',a:'Yes, the converter uses precise mathematical formulas with no rounding errors for standard conversions. However, for currency conversions, you would also need to apply exchange rates, which this tool does not cover.'},
+];
+
+(function(){
+  const list=document.getElementById('faqList');
+  list.innerHTML=faqs.map((f,i)=>`
+    <div class="section-card overflow-hidden">
+      <button class="w-full text-left px-5 py-4 flex items-center justify-between" onclick="toggleFaq(${i})" aria-expanded="false">
+        <span class="font-semibold text-sm text-brand-900 pr-4">${f.q}</span>
+        <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 faq-chevron flex-shrink-0" id="faqChev${i}"></i>
+      </button>
+      <div class="faq-answer px-5 pb-4" id="faqA${i}">
+        <p class="text-sm text-gray-500 leading-relaxed">${f.a}</p>
+      </div>
+    </div>
+  `).join('');
+})();
+
+function toggleFaq(i){
+  const ans=document.getElementById('faqA'+i);
+  const chev=document.getElementById('faqChev'+i);
+  const isOpen=ans.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-answer').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-chevron').forEach(c=>c.classList.remove('open'));
+  if(!isOpen){ ans.classList.add('open'); chev.classList.add('open'); }
 }
 
-// ===== THEME =====
-const themeBtn = document.getElementById('themeToggle');
-let dark = false;
-themeBtn.addEventListener('click', () => {
-  dark = !dark;
-  document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
-  themeBtn.textContent = dark ? '☀️' : '🌙';
-});
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('fade-up');observer.unobserve(e.target);}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.observe-fade').forEach(el=>observer.observe(el));
 
-// Auto dark mode
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  dark = true;
-  document.documentElement.setAttribute('data-theme', 'dark');
-  themeBtn.textContent = '☀️';
-}
-
-// ===== NAV =====
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-  // Progress bar
-  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = (window.scrollY / scrollable) * 100;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  // Active nav links
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    const sec = document.querySelector(a.getAttribute('href'));
-    if (sec) {
-      const rect = sec.getBoundingClientRect();
-      a.classList.toggle('active', rect.top <= 100 && rect.bottom >= 100);
+// ===== ANIMATED COUNTERS =====
+const counterObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=parseInt(el.dataset.target);
+      let current=0;
+      const step=Math.max(1,Math.floor(target/40));
+      const timer=setInterval(()=>{
+        current+=step;
+        if(current>=target){current=target;clearInterval(timer);}
+        el.textContent=current.toLocaleString('en-US');
+      },30);
+      counterObs.unobserve(el);
     }
   });
-});
+},{threshold:0.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
 
-// ===== HAMBURGER =====
-document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
-document.getElementById('mobileClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
-function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+// ===== NAV HIGHLIGHT =====
+const sections=['hero','how','guide','compare','faq'];
+const navLinks=document.querySelectorAll('.nav-link');
+const navObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const link=document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{threshold:0.3});
+sections.forEach(id=>{const el=document.getElementById(id);if(el)navObs.observe(el);});
 
-// ===== SCROLL REVEAL =====
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// Init icons
+lucide.createIcons();
 
-// ===== SCALE BARS ANIMATION =====
-const scaleBars = [
-  { id: 'sb1', h: 12 },
-  { id: 'sb2', h: 30 },
-  { id: 'sb3', h: 50 },
-  { id: 'sb4', h: 70 },
-  { id: 'sb5', h: 95 },
-  { id: 'sb6', h: 115 }
-];
-const scaleObs = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) {
-    scaleBars.forEach((bar, i) => {
-      setTimeout(() => {
-        const el = document.getElementById(bar.id);
-        if (el) el.style.height = bar.h + 'px';
-      }, i * 150);
-    });
+// ===== FLOATING NUMBERS BACKGROUND =====
+(function(){
+  const container=document.getElementById('floatingNumbers');
+  const numbers=['1B','100CR','7.5B','250L','1M','50B','99CR','5B','1000L','2.3B','₹500','$1B','100M','₹1Cr','2B'];
+  const positions=[];
+  
+  for(let i=0;i<12;i++){
+    const num=numbers[Math.floor(Math.random()*numbers.length)];
+    const left=Math.random()*100;
+    const top=Math.random()*100;
+    const delay=Math.random()*6;
+    const duration=5+Math.random()*4;
+    
+    const el=document.createElement('div');
+    el.className='floating-number';
+    el.textContent=num;
+    el.style.left=left+'%';
+    el.style.top=top+'%';
+    el.style.animationDelay=delay+'s';
+    el.style.animationDuration=duration+'s';
+    container.appendChild(el);
   }
-}, { threshold: 0.3 });
-const scaleEl = document.getElementById('scaleVisual');
-if (scaleEl) scaleObs.observe(scaleEl);
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-  setPreset(1);
-  renderHistory();
-});
+})();
 </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e8fbad32097b0ba',t:'MTc3NTYzNTEzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
