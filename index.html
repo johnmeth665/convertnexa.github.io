@@ -1,64 +1,792 @@
-<!doctype html>
-<html lang="en" class="h-full" style="scroll-behavior:smooth">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Billion to Crore Converter</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billion to Crore Converter | Smart Financial Number Converter</title>
+<meta name="description" content="Convert billion to crore, million to lakh, and more with our smart financial number converter. Real-time conversion with calculation history, voice input, and detailed guides.">
+<meta name="keywords" content="billion to crore, crore to billion, million to lakh, number converter, financial converter, Indian numbering system">
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<!-- Schema Markup: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Billion to Crore Converter",
+  "applicationCategory": "FinanceApplication",
+  "description": "Convert between billion, crore, million, and lakh with real-time calculations",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
 
-  <!-- Lucide Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-
-  <!-- SDK -->
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config={
-      theme:{
-        extend:{
-          fontFamily:{
-            heading:['Space Mono','monospace'],
-            body:['DM Sans','sans-serif']
-          },
-          colors:{
-            brand:{
-              50:'#fef3f2',
-              100:'#fde8e6',
-              200:'#fbd5d0',
-              400:'#f97066',
-              500:'#f04438',
-              600:'#d92d20',
-              700:'#b42318',
-              900:'#55160c'
-            },
-            surface:'#fffbfa',
-            dark:'#3e1c17'
-          }
-        }
-      }
+<!-- Schema Markup: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many crores is 1 billion?",
+      "acceptedAnswer": { "@type": "Answer", "text": "1 Billion equals 100 Crore (10,00,00,000)." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many millions is 1 crore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "1 Crore equals 10 Million." }
     }
-  </script>
+  ]
+}
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- External Stylesheet -->
+<link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="h-full">
-<div id="app" class="w-full h-full overflow-auto num-grid">
+<div class="noise-bg"></div>
+<div id="progress-bar"></div>
 
-<!-- (KEEP ALL YOUR HTML BODY CONTENT SAME — I DID NOT MODIFY ANYTHING) -->
+<!-- ===================================================
+     NAVIGATION
+===================================================== -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">₿</div>
+        BtoC Converter
+      </a>
+      <ul class="nav-links">
+        <li><a href="#converter" class="active">Converter</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#guide">Guide</a></li>
+        <li><a href="#advanced">Advanced</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <button class="nav-cta" onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})">Convert Now</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
 
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" id="mobileClose">✕</span>
+  <a href="#converter"    onclick="closeMobile()">Converter</a>
+  <a href="#how-it-works" onclick="closeMobile()">How It Works</a>
+  <a href="#guide"        onclick="closeMobile()">Guide</a>
+  <a href="#advanced"     onclick="closeMobile()">Advanced</a>
+  <a href="#faq"          onclick="closeMobile()">FAQ</a>
 </div>
 
-<!-- External JS -->
-<script src="script.js"></script>
+<!-- ===================================================
+     HERO / CONVERTER
+===================================================== -->
+<section class="hero" id="converter">
+  <div class="hero-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="grid-bg"></div>
+
+  <div class="container">
+    <div class="hero-content">
+
+      <!-- Left: headline + stats -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="badge">Smart Financial Converter</span>
+        </div>
+        <h1 class="hero-title">
+          Billion to Crore<br><span>Converter Tool</span>
+        </h1>
+        <p class="hero-desc">
+          Instantly convert between global and Indian numbering systems — Billion, Crore, Million, Lakh and more — with real-time calculation, voice input, and detailed financial breakdowns.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-val" id="statConv">1B = 100Cr</div>
+            <div class="hero-stat-lbl">Core Formula</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">6+</div>
+            <div class="hero-stat-lbl">Unit Types</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">Instant</div>
+            <div class="hero-stat-lbl">Real-time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Converter Card -->
+      <div>
+        <div class="converter-card" id="converterCard">
+          <div class="converter-header">
+            <span class="converter-title">⚡ Smart Converter</span>
+            <div class="converter-mode-btns">
+              <button class="mode-btn active" id="modeSimple"   onclick="setMode('simple')">Simple</button>
+              <button class="mode-btn"         id="modeAdvanced" onclick="setMode('advanced')">Advanced</button>
+            </div>
+          </div>
+
+          <!-- Quick Presets -->
+          <div>
+            <div class="input-label">Quick Presets</div>
+            <div class="preset-btns">
+              <button class="preset-btn" onclick="setPreset(0.1)">100M</button>
+              <button class="preset-btn" onclick="setPreset(1)">1B</button>
+              <button class="preset-btn" onclick="setPreset(5)">5B</button>
+              <button class="preset-btn" onclick="setPreset(10)">10B</button>
+              <button class="preset-btn" onclick="setPreset(50)">50B</button>
+              <button class="preset-btn" onclick="setPreset(100)">100B</button>
+            </div>
+          </div>
+
+          <!-- Input Row -->
+          <div class="input-group">
+            <div class="input-label">Input Value</div>
+            <div class="input-row">
+              <input
+                type="number"
+                class="num-input"
+                id="inputVal"
+                placeholder="Enter number..."
+                oninput="calculate()"
+                min="0"
+                step="any"
+              >
+              <select class="unit-select" id="fromUnit" onchange="calculate()">
+                <option value="billion">Billion</option>
+                <option value="million">Million</option>
+                <option value="crore">Crore</option>
+                <option value="lakh">Lakh</option>
+                <option value="thousand">Thousand</option>
+                <option value="trillion">Trillion</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <button class="swap-btn" onclick="swapUnits()" title="Swap units">⇅</button>
+
+          <!-- Output Row -->
+          <div class="input-group">
+            <div class="input-label">Convert To</div>
+            <div class="input-row">
+              <div class="result-display" style="flex:1">
+                <div class="result-val" id="resultVal">—</div>
+                <div class="result-label" id="resultLabel">Enter a value above to convert</div>
+                <div class="result-formatted" id="resultFormatted"></div>
+              </div>
+              <select class="unit-select" id="toUnit" onchange="calculate()" style="align-self:stretch">
+                <option value="crore" selected>Crore</option>
+                <option value="billion">Billion</option>
+                <option value="million">Million</option>
+                <option value="lakh">Lakh</option>
+                <option value="thousand">Thousand</option>
+                <option value="trillion">Trillion</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="converter-actions">
+            <button class="btn btn-primary" onclick="copyResult()">📋 Copy</button>
+            <button class="btn btn-ghost"   onclick="shareResult()">🔗 Share</button>
+            <button class="btn btn-ghost"   id="voiceBtn" onclick="startVoice()">🎤 Voice</button>
+            <button class="btn btn-danger"  onclick="resetConverter()">↺ Reset</button>
+          </div>
+
+          <!-- All Conversions (advanced mode only) -->
+          <div id="allConversions" style="display:none; margin-top:20px;">
+            <div class="input-label" style="margin-bottom:10px">All Conversions</div>
+            <div id="allConvList" style="display:flex;flex-direction:column;gap:6px;"></div>
+          </div>
+        </div><!-- /converter-card -->
+      </div>
+
+    </div><!-- /hero-content -->
+  </div>
+</section>
+
+<!-- ===================================================
+     INTRODUCTION
+===================================================== -->
+<section id="intro">
+  <div class="container">
+    <div class="section-label">Introduction</div>
+    <h2 class="section-title reveal">Understanding Large Number Systems</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start">
+
+      <!-- Text + Scale Chart -->
+      <div class="reveal reveal-delay-1">
+        <p class="section-desc" style="max-width:100%">
+          The world uses two primary large number systems: the <strong>International System</strong>
+          (Thousand → Million → Billion → Trillion) and the <strong>Indian System</strong>
+          (Hazar → Lakh → Crore). These systems diverge significantly above 100,000, making
+          <a
+            href="https://thesmartkeyrealty.com/billion-to-crore-conversion/"
+            class="keyword-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >billion to crore conversion</a>
+          essential for finance professionals, students, and business analysts working across global markets.
+        </p>
+        <br>
+        <p style="color:var(--text2);font-size:0.95rem;line-height:1.75">
+          Whether you're reading a global financial report in Billions or an Indian stock market report
+          in Crores, our converter bridges the gap instantly. The core formula is simple:
+          <strong>1 Billion = 100 Crore</strong>, yet the broader number system differences run deep —
+          affecting how we read corporate revenues, national budgets, and investment values.
+        </p>
+        <br>
+
+        <!-- Animated Scale Bar Chart -->
+        <div class="scale-visual" id="scaleVisual">
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb1" style="height:12px;opacity:0.6"></div>
+            <div class="scale-bar-val">1K</div>
+            <div class="scale-bar-label">Thousand</div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb2" style="height:30px;opacity:0.7"></div>
+            <div class="scale-bar-val">1L</div>
+            <div class="scale-bar-label">Lakh</div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb3" style="height:50px;opacity:0.8"></div>
+            <div class="scale-bar-val">1M</div>
+            <div class="scale-bar-label">Million</div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb4" style="height:70px;opacity:0.9"></div>
+            <div class="scale-bar-val">1Cr</div>
+            <div class="scale-bar-label">Crore</div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb5" style="height:90px"></div>
+            <div class="scale-bar-val">1B</div>
+            <div class="scale-bar-label">Billion</div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner" id="sb6" style="height:110px"></div>
+            <div class="scale-bar-val">1T</div>
+            <div class="scale-bar-label">Trillion</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SVG Infographic -->
+      <div class="reveal reveal-delay-2">
+        <div class="infographic-wrap">
+          <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#2563eb"/>
+                <stop offset="100%" style="stop-color:#6366f1"/>
+              </linearGradient>
+              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#10b981"/>
+                <stop offset="100%" style="stop-color:#0891b2"/>
+              </linearGradient>
+            </defs>
+            <rect width="480" height="360" rx="0" fill="var(--surface,#fff)"/>
+            <text x="240" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text,#0a0e1a)" font-family="Syne,sans-serif">Number Scale Comparison</text>
+            <line x1="20" y1="44" x2="460" y2="44" stroke="var(--border,rgba(100,130,255,0.15))" stroke-width="1"/>
+            <!-- Column Headers -->
+            <rect x="20" y="54" width="200" height="28" rx="6" fill="url(#grad1)"/>
+            <text x="120" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="DM Sans,sans-serif">INTERNATIONAL SYSTEM</text>
+            <rect x="260" y="54" width="200" height="28" rx="6" fill="url(#grad2)"/>
+            <text x="360" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="DM Sans,sans-serif">INDIAN SYSTEM</text>
+            <!-- Row 1: Thousand -->
+            <rect x="20" y="90" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
+            <text x="30" y="111" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Thousand</text>
+            <text x="215" y="111" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">1,000</text>
+            <rect x="260" y="90" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
+            <text x="270" y="111" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Hazar</text>
+            <text x="455" y="111" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">1,000</text>
+            <line x1="220" y1="108" x2="260" y2="108" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="240" y="106" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
+            <!-- Row 2: Million -->
+            <rect x="20" y="134" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
+            <text x="30" y="155" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Million</text>
+            <text x="215" y="155" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">10,00,000</text>
+            <rect x="260" y="134" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
+            <text x="270" y="155" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">10 Lakh</text>
+            <text x="455" y="155" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">10,00,000</text>
+            <line x1="220" y1="152" x2="260" y2="152" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="240" y="150" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
+            <!-- Row 3: Billion — highlighted -->
+            <rect x="20" y="178" width="200" height="36" rx="6" fill="rgba(37,99,235,0.14)"/>
+            <text x="30" y="199" font-size="12" font-weight="700" fill="#2563eb" font-family="DM Sans,sans-serif">1 Billion ★</text>
+            <text x="215" y="199" font-size="11" font-family="JetBrains Mono,monospace" fill="#2563eb" text-anchor="middle">1,00,00,00,000</text>
+            <rect x="260" y="178" width="200" height="36" rx="6" fill="rgba(16,185,129,0.14)"/>
+            <text x="270" y="199" font-size="12" font-weight="700" fill="#10b981" font-family="DM Sans,sans-serif">100 Crore ★</text>
+            <text x="455" y="199" font-size="11" font-family="JetBrains Mono,monospace" fill="#10b981" text-anchor="end">100 Cr</text>
+            <line x1="220" y1="196" x2="260" y2="196" stroke="#f59e0b" stroke-width="2"/>
+            <text x="240" y="193" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="700" font-family="DM Sans,sans-serif">=</text>
+            <!-- Row 4: Trillion -->
+            <rect x="20" y="222" width="200" height="36" rx="6" fill="rgba(37,99,235,0.06)"/>
+            <text x="30" y="243" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Trillion</text>
+            <text x="215" y="243" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(37,99,235,0.7)" text-anchor="middle">10,00,00,00,00,000</text>
+            <rect x="260" y="222" width="200" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
+            <text x="270" y="243" font-size="12" font-weight="600" fill="var(--text,#0a0e1a)" font-family="DM Sans,sans-serif">1 Lakh Crore</text>
+            <text x="455" y="243" font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(16,185,129,0.7)" text-anchor="end">1,00,000 Cr</text>
+            <line x1="220" y1="240" x2="260" y2="240" stroke="var(--border,rgba(100,130,255,0.2))" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="240" y="238" text-anchor="middle" font-size="9" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">=</text>
+            <!-- Key Insight -->
+            <rect x="20" y="272" width="440" height="72" rx="10" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="240" y="294" text-anchor="middle" font-size="11" fill="#d97706" font-weight="700" font-family="Syne,sans-serif">KEY INSIGHT</text>
+            <text x="240" y="312" text-anchor="middle" font-size="13" fill="var(--text,#0a0e1a)" font-weight="700" font-family="JetBrains Mono,monospace">1 Billion = 100 Crore = 1,000 Million</text>
+            <text x="240" y="330" text-anchor="middle" font-size="10" fill="var(--text3,#6b7280)" font-family="DM Sans,sans-serif">The International system groups in threes; Indian system in twos after the first group</text>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     HOW IT WORKS
+===================================================== -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title reveal">The Conversion Formula</h2>
+    <p class="section-desc reveal reveal-delay-1">Simple math, clear results. Here's the step-by-step breakdown of how large number conversion works between international and Indian systems.</p>
+
+    <div class="how-grid">
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">Identify Your Input Unit</div>
+            <div class="step-desc">Choose whether you're working with Billions, Millions, Trillions (international) or Crores, Lakhs, Thousands (Indian system). This determines the base multiplier.</div>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">Apply the Multiplier</div>
+            <div class="step-desc">Each unit has a fixed numeric value. For example, 1 Billion = 1,000,000,000 (10⁹). Multiply your input by this base value to get the raw number.</div>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">Divide by Target Unit</div>
+            <div class="step-desc">Divide the raw number by the target unit's value. 1 Crore = 10,000,000 (10⁷), so 1 Billion ÷ 10⁷ = 100 Crore. The result is your converted value.</div>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">Format and Verify</div>
+            <div class="step-desc">Apply proper Indian or International number formatting. 100 Crore becomes 1,00,00,00,000 in Indian format — same number, different presentation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formula Cards -->
+      <div class="formula-card reveal reveal-delay-1">
+        <div class="section-label" style="margin-bottom:8px">Core Formulas</div>
+        <div class="formula-grid">
+          <div class="formula-item">
+            <div class="formula-icon">🔵</div>
+            <div class="formula-text">
+              <div class="label">Billion → Crore</div>
+              <div class="eq">1 B = 100 Cr &nbsp;[×100]</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-icon">🟢</div>
+            <div class="formula-text">
+              <div class="label">Crore → Billion</div>
+              <div class="eq">1 Cr = 0.01 B &nbsp;[÷100]</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-icon">🟡</div>
+            <div class="formula-text">
+              <div class="label">Million → Lakh</div>
+              <div class="eq">1 M = 10 L &nbsp;[×10]</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-icon">🟣</div>
+            <div class="formula-text">
+              <div class="label">Billion → Million</div>
+              <div class="eq">1 B = 1,000 M &nbsp;[×1000]</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-icon">🔴</div>
+            <div class="formula-text">
+              <div class="label">Trillion → Billion</div>
+              <div class="eq">1 T = 1,000 B &nbsp;[×1000]</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-icon">🔷</div>
+            <div class="formula-text">
+              <div class="label">Trillion → Crore</div>
+              <div class="eq">1 T = 1,00,000 Cr &nbsp;[×10⁵]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     GUIDE: NUMBER SYSTEMS
+===================================================== -->
+<section id="guide">
+  <div class="container">
+    <div class="section-label">Detailed Guide</div>
+    <h2 class="section-title reveal">Global vs Indian Numbering Systems</h2>
+    <p class="section-desc reveal reveal-delay-1">Two distinct systems for expressing the same quantities. Understanding both is critical for international finance and data analysis.</p>
+
+    <div class="number-system-grid">
+      <div class="ns-card reveal">
+        <div class="ns-card-title">🌍 International System <span class="ns-tag global">Global</span></div>
+        <div class="ns-row"><span class="ns-name">One Thousand</span>         <span class="ns-val">1,000</span>                    <span class="ns-num">10³</span></div>
+        <div class="ns-row"><span class="ns-name">Ten Thousand</span>          <span class="ns-val">10,000</span>                   <span class="ns-num">10⁴</span></div>
+        <div class="ns-row"><span class="ns-name">One Hundred Thousand</span> <span class="ns-val">1,00,000</span>                  <span class="ns-num">10⁵</span></div>
+        <div class="ns-row"><span class="ns-name">One Million</span>           <span class="ns-val">1,000,000</span>                 <span class="ns-num">10⁶</span></div>
+        <div class="ns-row"><span class="ns-name">Ten Million</span>           <span class="ns-val">10,000,000</span>                <span class="ns-num">10⁷</span></div>
+        <div class="ns-row"><span class="ns-name">One Billion</span>           <span class="ns-val">1,000,000,000</span>             <span class="ns-num">10⁹</span></div>
+        <div class="ns-row"><span class="ns-name">One Trillion</span>          <span class="ns-val">1,000,000,000,000</span>         <span class="ns-num">10¹²</span></div>
+      </div>
+      <div class="ns-card reveal reveal-delay-1">
+        <div class="ns-card-title">🇮🇳 Indian System <span class="ns-tag indian">South Asian</span></div>
+        <div class="ns-row"><span class="ns-name">One Hazar (Thousand)</span> <span class="ns-val">1,000</span>             <span class="ns-num">10³</span></div>
+        <div class="ns-row"><span class="ns-name">Ten Hazar</span>             <span class="ns-val">10,000</span>            <span class="ns-num">10⁴</span></div>
+        <div class="ns-row"><span class="ns-name">One Lakh</span>              <span class="ns-val">1,00,000</span>          <span class="ns-num">10⁵</span></div>
+        <div class="ns-row"><span class="ns-name">Ten Lakh</span>              <span class="ns-val">10,00,000</span>         <span class="ns-num">10⁶</span></div>
+        <div class="ns-row"><span class="ns-name">One Crore</span>             <span class="ns-val">1,00,00,000</span>       <span class="ns-num">10⁷</span></div>
+        <div class="ns-row"><span class="ns-name">Ten Crore</span>             <span class="ns-val">10,00,00,000</span>      <span class="ns-num">10⁸</span></div>
+        <div class="ns-row"><span class="ns-name">One Arab (100 Crore)</span> <span class="ns-val">1,00,00,00,000</span>    <span class="ns-num">10⁹</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     COMPARISON TABLE
+===================================================== -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-label">Comparison</div>
+    <h2 class="section-title reveal">Complete Conversion Reference Table</h2>
+    <p class="section-desc reveal reveal-delay-1">A complete at-a-glance reference for all unit conversions between international and Indian number systems.</p>
+
+    <div class="comparison-wrap reveal">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Numeric Value</th>
+            <th>In Billion</th>
+            <th>In Million</th>
+            <th>In Crore</th>
+            <th>In Lakh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1 Thousand</td><td class="mono">1,000</td>                    <td class="mono">0.000001 B</td>  <td class="mono">0.001 M</td>      <td class="mono">0.0001 Cr</td> <td class="mono">0.01 L</td></tr>
+          <tr><td>1 Lakh</td>    <td class="mono">1,00,000</td>                 <td class="mono">0.0001 B</td>   <td class="mono">0.1 M</td>       <td class="mono">0.01 Cr</td>  <td class="mono">1 L</td></tr>
+          <tr><td>1 Million</td> <td class="mono">10,00,000</td>                <td class="mono">0.001 B</td>    <td class="mono">1 M</td>         <td class="mono">0.1 Cr</td>   <td class="mono">10 L</td></tr>
+          <tr><td>1 Crore</td>   <td class="mono">1,00,00,000</td>              <td class="mono">0.01 B</td>     <td class="mono">10 M</td>        <td class="mono">1 Cr</td>     <td class="mono">100 L</td></tr>
+          <tr class="highlight-row">
+            <td>⭐ 1 Billion</td>
+            <td class="mono">1,00,00,00,000</td>
+            <td class="mono">1 B</td>
+            <td class="mono">1,000 M</td>
+            <td class="mono">100 Cr</td>
+            <td class="mono">10,000 L</td>
+          </tr>
+          <tr><td>100 Crore</td> <td class="mono">1,00,00,00,000</td>           <td class="mono">1 B</td>        <td class="mono">1,000 M</td>     <td class="mono">100 Cr</td>   <td class="mono">10,000 L</td></tr>
+          <tr><td>1 Trillion</td><td class="mono">10,00,00,00,00,000</td>       <td class="mono">1,000 B</td>    <td class="mono">10,00,000 M</td> <td class="mono">1,00,000 Cr</td><td class="mono">1,000 L Cr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     USE CASES
+===================================================== -->
+<section id="use-cases">
+  <div class="container">
+    <div class="section-label">Applications</div>
+    <h2 class="section-title reveal">Where This Converter Is Used</h2>
+    <p class="section-desc reveal reveal-delay-1">From stock markets to budget planning — large number conversion is a critical skill across many professional domains.</p>
+
+    <div class="use-cases-grid">
+      <div class="use-case-card reveal">
+        <div class="use-case-icon">📈</div>
+        <div class="use-case-title">Stock Market &amp; Trading</div>
+        <div class="use-case-desc">NSE/BSE reports market cap in Crores while global indices use Billions. Convert instantly while analyzing Indian vs foreign stocks and ETFs.</div>
+      </div>
+      <div class="use-case-card reveal reveal-delay-1">
+        <div class="use-case-icon">🏦</div>
+        <div class="use-case-title">Finance &amp; Banking</div>
+        <div class="use-case-desc">Banks, NBFCs, and financial institutions often report earnings in Crores for domestic reports and Billions for international disclosures.</div>
+      </div>
+      <div class="use-case-card reveal reveal-delay-2">
+        <div class="use-case-icon">📊</div>
+        <div class="use-case-title">Business Reports</div>
+        <div class="use-case-desc">Annual reports of Indian companies list revenue in Crores. Translate to Billion equivalents for global investor communication and benchmarking.</div>
+      </div>
+      <div class="use-case-card reveal">
+        <div class="use-case-icon">🎓</div>
+        <div class="use-case-title">Education &amp; Research</div>
+        <div class="use-case-desc">Economics students and researchers regularly convert between systems when comparing GDP data, national debt figures, and global statistics.</div>
+      </div>
+      <div class="use-case-card reveal reveal-delay-1">
+        <div class="use-case-icon">🌐</div>
+        <div class="use-case-title">International Trade</div>
+        <div class="use-case-desc">Import/export values, trade balances, and foreign investment figures span both number systems. Quick conversion prevents costly misinterpretations.</div>
+      </div>
+      <div class="use-case-card reveal reveal-delay-2">
+        <div class="use-case-icon">💻</div>
+        <div class="use-case-title">Data Analysis &amp; BI</div>
+        <div class="use-case-desc">Data analysts working with Indian and international datasets need to normalize units before visualization, reporting, or model training.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     ADVANCED PANEL
+===================================================== -->
+<section id="advanced">
+  <div class="container">
+    <div class="section-label">Advanced Tools</div>
+    <h2 class="section-title reveal">Advanced Converter Features</h2>
+    <p class="section-desc reveal reveal-delay-1">Bulk conversions, history tracking, and powerful utilities for power users and professionals.</p>
+
+    <div class="adv-grid">
+
+      <!-- Bulk Converter -->
+      <div class="panel-card reveal">
+        <div class="panel-header">
+          <span class="panel-header-title">📝 Bulk Converter</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            <select class="bulk-unit-select" id="bulkFrom">
+              <option value="billion">Billion</option>
+              <option value="million">Million</option>
+              <option value="crore">Crore</option>
+              <option value="lakh">Lakh</option>
+            </select>
+            <span style="color:var(--text3);font-size:0.85rem">→</span>
+            <select class="bulk-unit-select" id="bulkTo">
+              <option value="crore" selected>Crore</option>
+              <option value="billion">Billion</option>
+              <option value="million">Million</option>
+              <option value="lakh">Lakh</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="input-label" style="margin-bottom:8px">Enter numbers (one per line)</div>
+          <textarea
+            class="bulk-textarea"
+            id="bulkInput"
+            placeholder="1&#10;5&#10;10&#10;25.5&#10;100"
+            oninput="bulkConvert()"
+          ></textarea>
+          <div class="bulk-opts">
+            <button class="btn btn-ghost"   onclick="bulkConvert()" style="font-size:0.8rem">⟳ Convert All</button>
+            <button class="btn btn-ghost"   onclick="copyBulk()"    style="font-size:0.8rem">📋 Copy Results</button>
+            <button class="btn btn-danger"  onclick="document.getElementById('bulkInput').value='';document.getElementById('bulkResults').textContent=''" style="font-size:0.8rem">✕ Clear</button>
+          </div>
+          <div class="input-label" style="margin-bottom:8px">Results</div>
+          <div class="bulk-results" id="bulkResults">Results will appear here...</div>
+        </div>
+      </div>
+
+      <!-- Calculation History -->
+      <div class="panel-card reveal reveal-delay-1">
+        <div class="panel-header">
+          <span class="panel-header-title">🕑 Calculation History</span>
+          <button class="btn btn-danger" onclick="clearHistory()" style="font-size:0.75rem;padding:5px 10px">Clear</button>
+        </div>
+        <div class="panel-body" style="padding:16px">
+          <div class="history-list" id="historyList">
+            <div class="empty-hist">
+              <div class="empty-hist-icon">📜</div>
+              <div>No conversions yet</div>
+              <div style="font-size:0.8rem;margin-top:4px;color:var(--text3)">Use the converter above to see history</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     FAQ
+===================================================== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <p class="section-desc reveal reveal-delay-1">Everything you need to know about billion to crore conversion and large number systems.</p>
+
+    <div class="faq-grid" style="margin-top:48px">
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How many crores is 1 billion?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">1 Billion equals exactly 100 Crore. This is because 1 Billion = 1,000,000,000 and 1 Crore = 10,000,000. So 1,000,000,000 ÷ 10,000,000 = 100 Crore. This is the most common conversion needed in Indian financial contexts.</div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How many millions is 1 crore?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">1 Crore equals 10 Million. Since 1 Crore = 1,00,00,000 in the Indian system and 1 Million = 10,00,000, dividing gives us 10 Million per Crore.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What is the difference between Billion and Arab?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">In the Indian numbering system, 100 Crore is called "Arab." This is exactly equal to 1 Billion in the international system. So 1 Billion = 1 Arab = 100 Crore.</div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How many lakhs is 1 billion?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">1 Billion = 10,000 Lakh. Since 1 Lakh = 1,00,000 and 1 Billion = 1,00,00,00,000, dividing gives 10,000 Lakh. So if a company earns ₹1 Billion, it earned ₹10,000 Lakh.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Why do India and Western countries use different number systems?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">The Indian numbering system evolved separately and groups digits differently after the first three digits. After 999, the Indian system uses groups of two (Lakh = 1,00,000; Crore = 1,00,00,000), while the international system always groups in threes (Million = 1,000,000; Billion = 1,000,000,000).</div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How do I convert 5.7 Billion to Crore?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Multiply 5.7 × 100 = 570 Crore. The formula is: Value in Crore = Value in Billion × 100. So 5.7 Billion = 570 Crore = 5,70,00,00,000. You can also use our converter above for instant results.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is 1 trillion equal to how many crores?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">1 Trillion = 1,00,000 Crore (One Lakh Crore). Since 1 Trillion = 1,000 Billion and 1 Billion = 100 Crore, multiplying gives 1,000 × 100 = 1,00,000 Crore. The Indian government often refers to large budgets in "Lakh Crore."</div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does the converter support decimal values?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Yes! Our converter fully supports decimal inputs. For example, entering 2.5 Billion will give you 250 Crore. You can enter any decimal number and get precise results up to 6 decimal places in the output.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     CTA
+===================================================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">Start Converting Numbers Instantly</h2>
+    <p class="reveal reveal-delay-1">Join thousands of finance professionals, students, and analysts who rely on our converter for accurate large number conversions.</p>
+    <div class="cta-btns reveal reveal-delay-2">
+      <button class="btn btn-white"         onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})">🚀 Use Converter Now</button>
+      <button class="btn btn-outline-white" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">📖 Read the Guide</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     FOOTER
+===================================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">₿ BtoC Converter</div>
+        <p>The most accurate and feature-rich billion to crore converter, built for finance professionals and learners worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="#converter">Billion → Crore</a></li>
+          <li><a href="#converter">Crore → Billion</a></li>
+          <li><a href="#advanced">Bulk Converter</a></li>
+          <li><a href="#converter">Million → Lakh</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#guide">Number Systems</a></li>
+          <li><a href="#comparison">Comparison Table</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Use Cases</h4>
+        <ul>
+          <li><a href="#use-cases">Finance</a></li>
+          <li><a href="#use-cases">Stock Market</a></li>
+          <li><a href="#use-cases">Education</a></li>
+          <li><a href="#use-cases">Data Analysis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 BtoC Converter. Built for accuracy and speed.</p>
+      <p>1 Billion = 100 Crore | 1 Million = 10 Lakh | 1 Trillion = 1,00,000 Crore</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- External JavaScript (loaded at end of body for performance) -->
+<script src="main.js"></script>
 
 </body>
 </html>
